@@ -5,13 +5,18 @@ set -e
 XBIN=usr/xbin
 SRC=src
 
-PACKAGEDIR=/usr/pkgsrc/packages/`uname -r`/`uname -m`
+# Which revision, arch are we building?
+BUILDREV="`uname -r`"
+BUILDARCH="`uname -p`"
+PACKAGEDIR=/usr/pkgsrc/packages/$BUILDREV/$BUILDARCH/All/
+
 # List of packages included on installation media
 PACKAGELIST=packages.install
 secs=`expr 32 '*' 64`
 export SHELL=/bin/sh
 
 PKG_ADD=/usr/pkg/sbin/pkg_add
+PKG_INFO=/usr/pkg/sbin/pkg_info
 
 if [ ! -x $PKG_ADD ]
 then	echo Please install pkg_install from pkgsrc.
@@ -19,8 +24,18 @@ then	echo Please install pkg_install from pkgsrc.
 fi
 
 # Packages we have to pre-install, and url to use
-PREINSTALLED_PACKAGES="pkgin-0.3.3.4.tgz pkg_install-20101212 bmake-20100808"
-PACKAGEURL=ftp://ftp.minix3.org/pub/minix/packages/`uname -r`/`uname -m`/All/
+PREINSTALLED_PACKAGES="
+	pkgin-0.4.1
+	pkg_install-20101212
+	bmake-20100808
+	binutils-2.17nb3
+	clang-2.9nb2
+	compiler-rt-r123836nb3
+	"
+
+PACKAGEURL=ftp://ftp.minix3.org/pub/minix/packages/$BUILDREV/$BUILDARCH/All/
+PKG_ADD_URL=$PACKAGEURL
+PACKAGELOC=/usr/pkgsrc/packages/3.2.0/i386/All/
 
 RELEASERC=$HOME/.releaserc
 
@@ -187,7 +202,7 @@ MAKEMAP=0
 # Do we have git?
 if git --version >/dev/null
 then	if [ -d ../.git ]
-	then	REVTAG="`git describe --always`"
+	then	REVTAG="`git describe --always --dirty`"
 		echo "git mode; building $REVTAG"
 		GITMODE=1
 	fi
@@ -195,11 +210,11 @@ fi
 
 FILENAMEOUT=""
 
-while getopts "s:pmMchu?r:f:" c
+while getopts "ls:pmMchu?r:f:" c
 do
 	case "$c" in
 	\?)
-		echo "Usage: $0 [-p] [-c] [-h] [-m] [-M] [-r <tag>] [-u] [-f <filename>] [-s <username>]" >&2
+		echo "Usage: $0 [-l] [-p] [-c] [-h] [-m] [-M] [-r <tag>] [-u] [-f <filename>] [-s <username>]" >&2
 		exit 1
 	;;
 	h)
@@ -233,6 +248,8 @@ do
 		;;
 	M)	MAKEMAP=1
 		;;
+	l)	PKG_ADD_URL=file://$PACKAGEDIR
+		;;
 	esac
 done
 
@@ -242,7 +259,7 @@ fi
 
 if [ $PACKAGES -ne 0 ]
 then	mkdir -p $PACKAGEDIR/All || true
-	retrieve $PACKAGEDIR/All $PACKAGELIST packages/`uname -p`/`uname -r`
+	retrieve $PACKAGEDIR/All $PACKAGELIST packages/$BUILDARCH/$BUILDREV
 fi
 
 if [ "$COPY" -ne 1 ]
@@ -377,7 +394,7 @@ elif [ "$COPY" -eq 1 ]
 then
 	( cd .. && make depend && make clean )
 	srcdir=/usr/$SRC
-	( cd $srcdir && tar cf - . ) | ( cd $RELEASEDIR/usr && mkdir $SRC && cd $SRC && tar xf - )
+	( cd $srcdir && tar --exclude .svn -cf - .  ) | ( cd $RELEASEDIR/usr && mkdir $SRC && cd $SRC && tar xf - )
 	REVTAG=copy
 	REVISION=unknown
 	IMG=${IMG_BASE}_copy.iso
@@ -422,8 +439,8 @@ echo " * Make hierarchy"
 chroot $RELEASEDIR "PATH=/$XBIN sh -x /usr/$SRC/tools/chrootmake.sh etcfiles" || exit 1
 
 for p in $PREINSTALLED_PACKAGES
-do	echo " * Pre-installing: $p from $PACKAGEURL"
-    $PKG_ADD -P $RELEASEDIR $PACKAGEURL/$p
+do	echo " * Pre-installing: $p from $PKG_ADD_URL"
+    $PKG_ADD -P $RELEASEDIR $PKG_ADD_URL/$p
 done
 
 echo " * Chroot build"
