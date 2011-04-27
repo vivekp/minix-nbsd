@@ -1,6 +1,7 @@
 # Makefile for the boot monitor package.
 
 # XXX: Can only be built with ACK currently
+NBSD_LIBC:=no
 CC:=${CC:C/^.*gcc/cc/}
 COMPILER_TYPE:=ack
 
