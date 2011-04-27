@@ -5,6 +5,7 @@ LIBDIR=	/usr/lib/i86	# force
 CC:=${CC:C/.*[gp]cc/cc/:C/clang/cc/}
 AR=aal
 COMPILER_TYPE=ack
+NBSD_LIBC=no
 OBJECT_FMT=a.out
 CPPFLAGS+=	-mi86
 AFLAGS+=	-mi86
