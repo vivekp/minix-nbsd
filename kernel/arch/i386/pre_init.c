@@ -11,7 +11,11 @@
 #include <minix/types.h>
 #include <minix/type.h>
 #include <minix/com.h>
+#ifdef __NBSD_LIBC
+#include <a.out.h>
+#else
 #include <minix/a.out.h>
+#endif
 #include <machine/partition.h>
 #include "../../../boot/image.h"
 #include "string.h"
