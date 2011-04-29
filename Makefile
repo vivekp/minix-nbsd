@@ -46,8 +46,13 @@ mkfiles:
 	make -C share/mk install
 
 includes:
+.if defined(NBSD_LIBC) && ${NBSD_LIBC} == "yes"
+	$(MAKE) -C nbsd_include includes
+.else
 	$(MAKE) -C include includes
-	$(MAKE) -C lib includes
+.endif
+	$(MAKE) -C lib includes NBSD_LIBC=${NBSD_LIBC}
+
 
 libraries: includes
 	$(MAKE) -C lib build_ack
@@ -61,7 +66,7 @@ gnu-includes: includes
 	SHELL=/bin/sh; if [ -f $(MKHEADERS443_PKGSRC) ] ; then sh -e $(MKHEADERS443_PKGSRC) ; fi
 
 gnu-libraries: #gnu-includes
-	$(MAKE) -C lib build_gnu
+	$(MAKE) -C lib build_gnu NBSD_LIBC=${NBSD_LIBC}
 
 clang-libraries: includes
 	$(MAKE) -C lib build_clang
@@ -78,7 +83,7 @@ commands: includes libraries
 	$(MAKE) -C commands all
 
 depend:
-	$(MAKE) -C boot depend
+	$(MAKE) CC=cc -C boot depend
 	$(MAKE) -C commands depend
 	$(MAKE) -C kernel depend
 	$(MAKE) -C servers depend
@@ -91,12 +96,12 @@ etcforce:
 	$(MAKE) -C etc installforce
 
 all:
-	$(MAKE) -C boot all
+	$(MAKE) CC=cc -C boot all
 	$(MAKE) -C commands all
 	$(MAKE) -C tools all
 
 install:
-	$(MAKE) -C boot install
+	$(MAKE) CC=cc -C boot install
 	$(MAKE) -C man install makedb
 	$(MAKE) -C commands install
 	$(MAKE) -C share install
