@@ -1,3 +1,10 @@
+20110429:
+        Create /usr/netbsd hierarchy:
+	# cd /usr/src
+	# umount /proc
+	# make etcfiles
+	# mount -e -t procfs none /proc
+
 20110225:
 	Create ddekit include dirs:
 	mkdir -p /usr/include/ddekit/minix
