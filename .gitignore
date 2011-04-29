@@ -16,6 +16,7 @@ cscope.*
 obj-ack
 obj-gnu
 obj-elf-base
+obj-gnu-nbsd
 tools/revision
 TAGS
 tags
