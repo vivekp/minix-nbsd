@@ -34,22 +34,22 @@ build_ack:
 	sh ack_build.sh obj depend all install
 
 build_gnu:
-	NBSD=${NBSD} sh gnu_build.sh obj depend all install
+	NBSD_LIBC=${NBSD_LIBC} sh gnu_build.sh obj depend all install
 
 build_clang:
-	NBSD=${NBSD} sh clang_build.sh obj depend all install
+	NBSD_LIBC=${NBSD_LIBC} sh clang_build.sh obj depend all install
 
 build_elf:
-	NBSD=${NBSD} sh elf_build.sh obj depend all install
+	NBSD_LIBC=${NBSD_LIBC} sh elf_build.sh obj depend all install
 
 clean_ack:
 	sh ack_build.sh clean
 
 clean_gnu:
-	NBSD=${NBSD} sh gnu_build.sh clean
+	NBSD_LIBC=${NBSD_LIBC} sh gnu_build.sh clean
 
 clean_elf:
-	NBSD=${NBSD} sh elf_build.sh clean
+	NBSD_LIBC=${NBSD_LIBC} sh elf_build.sh clean
 
 clean_clang:
-	NBSD=${NBSD} sh clang_build.sh clean
+	NBSD_LIBC=${NBSD_LIBC} sh clang_build.sh clean

@@ -3,6 +3,5 @@
 export CC=gcc
 export MAKEOBJDIR=obj-gnu
 export PATH=$PATH:/usr/pkg/bin
-export NBSD=${NBSD}
 
-make $@
+make $@ NBSD_LIBC=${NBSD_LIBC}
