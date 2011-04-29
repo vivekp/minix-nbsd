@@ -1,3 +1,10 @@
+20110429:
+        Create /usr/netbsd hierarchy:
+	# cd /usr/src
+	# umount /proc
+	# make etcfiles
+	# mount -e -t procfs none /proc
+
 20110228: 
 	(Next release bumped to MINIX 3.2.0.)
 	ELF support in the base system. /usr/lib libraries
