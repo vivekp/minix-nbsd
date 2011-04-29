@@ -37,22 +37,22 @@ build_elf_base:
 	sh elf_build_base.sh obj depend all install
 .else
 build_gnu:
-	NBSD=${NBSD} sh gnu_build.sh obj depend all install
+	NBSD_LIBC=${NBSD_LIBC} sh gnu_build.sh obj depend all install
 
 build_clang:
-	NBSD=${NBSD} sh clang_build.sh obj depend all install
+	NBSD_LIBC=${NBSD_LIBC} sh clang_build.sh obj depend all install
 
 build_elf:
-	NBSD=${NBSD} sh elf_build.sh obj depend all install
+	NBSD_LIBC=${NBSD_LIBC} sh elf_build.sh obj depend all install
 
 clean_clang:
 	sh clang_build.sh clean
 
 clean_gnu:
-	NBSD=${NBSD} sh gnu_build.sh clean
+	NBSD_LIBC=${NBSD_LIBC} sh gnu_build.sh clean
 
 clean_elf:
-	NBSD=${NBSD} sh elf_build.sh clean
+	NBSD_LIBC=${NBSD_LIBC} sh elf_build.sh clean
 
 clean_clang:
-	NBSD=${NBSD} sh clang_build.sh clean
+	NBSD_LIBC=${NBSD_LIBC} sh clang_build.sh clean
