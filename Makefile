@@ -46,13 +46,9 @@ mkfiles:
 	make -C share/mk install
 
 includes:
-.if defined(NBSD_LIBC) && ${NBSD_LIBC} == "yes"
 	$(MAKE) -C nbsd_include includes
-.else
 	$(MAKE) -C include includes
-.endif
-	$(MAKE) -C lib includes NBSD_LIBC=${NBSD_LIBC}
-
+	$(MAKE) -C lib includes
 
 libraries: includes
 	$(MAKE) -C lib build_ack
@@ -65,8 +61,8 @@ gnu-includes: includes
 	SHELL=/bin/sh; if [ -f $(MKHEADERS443) ] ; then sh -e $(MKHEADERS443) ; fi
 	SHELL=/bin/sh; if [ -f $(MKHEADERS443_PKGSRC) ] ; then sh -e $(MKHEADERS443_PKGSRC) ; fi
 
-gnu-libraries: #gnu-includes
-	$(MAKE) -C lib build_gnu NBSD_LIBC=${NBSD_LIBC}
+gnu-libraries: includes #gnu-includes
+	$(MAKE) -C lib build_gnu
 
 clang-libraries: includes
 	$(MAKE) -C lib build_clang
