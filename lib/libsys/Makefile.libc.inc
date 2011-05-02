@@ -61,7 +61,7 @@ SRCS+=	${i}
 .endfor
 # Import from stdlib
 .for i in abort.c atexit.c atoi.c exit.c getenv.c \
-	getopt.c setenv.c
+	getopt.c ldiv.c setenv.c
 .PATH.c: ${LIBCSRCDIR}/stdlib
 SRCS+= ${i}
 CPPFLAGS.${i}+= -I${LIBCSRCDIR}/stdlib -I${LIBCSRCDIR}/include 
