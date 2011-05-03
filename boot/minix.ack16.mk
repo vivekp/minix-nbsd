@@ -10,3 +10,4 @@ OBJECT_FMT=a.out
 CPPFLAGS+=	-mi86
 AFLAGS+=	-mi86
 LDFLAGS+=	-mi86 -.o -com	# no crtso, common I+D
+NBSD_LIBC:=no
