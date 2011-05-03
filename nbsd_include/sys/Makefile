@@ -11,7 +11,7 @@ INCS+= ioc_net.h statfs.h
 
 INCS+=	ansi.h atomic.h \
 	bitops.h bswap.h \
-	cdefs.h cdefs_aout.h ctype_bits.h ctype_inline.h \
+	cdefs.h cdefs_aout.h cdefs_elf.h ctype_bits.h ctype_inline.h \
 	dir.h dirent.h exec_elf.h \
 	endian.h errno.h \
 	fcntl.h fd_set.h featuretest.h file.h \
