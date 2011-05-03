@@ -53,6 +53,4 @@ clean_gnu:
 
 clean_elf:
 	sh elf_build.sh clean
-
-clean_clang:
-	sh clang_build.sh clean
+.endif
