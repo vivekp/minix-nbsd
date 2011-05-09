@@ -34,6 +34,7 @@ usage:
 	@echo "	make hdboot     # Make image, and install to hard disk" >&2
 	@echo "	make fdboot     # Make image, and install to floppy disk" >&2
 	@echo "	make bootable   # Make hard disk bootable" >&2
+	@echo "	make nbsdsrc    # Download current NetBSD reference sources" >&2
 	@echo "	make clean      # Remove all compiler results, except libs" >&2
 	@echo " " >&2
 	@echo "To create a fresh MINIX configuration, try:" >&2
@@ -99,6 +100,11 @@ fdboot:	image
 	@sync
 
 install: includes services hdboot
+
+# download and update NetBSD reference sources.
+nbsdsrc:
+	(cd ..; cvs -d anoncvs@anoncvs.netbsd.org:/cvsroot co -N -d nbsd `cat tools/nbsd_ref` \
+	      src/lib/libc src/common/lib/libc src/include ) 
 
 # clean up compile results
 clean:
