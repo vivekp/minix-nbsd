@@ -1,6 +1,6 @@
-diff -ru /home/netbsd/src/lib/libc/Makefile ./Makefile
---- /home/netbsd/src/lib/libc/Makefile	2010-09-05 03:00:50.000000000 +0000
-+++ ./Makefile	2011-05-04 07:46:42.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/Makefile lib/nbsd_libc/Makefile
+--- nbsdsrc/src/lib/libc/Makefile	Sat Sep  4 12:17:58 2010
++++ lib/nbsd_libc/Makefile	Wed May  4 07:46:42 2011
 @@ -17,6 +17,9 @@
  # The Hesiod functions are always in libc. To choose that getpwent() and friends
  # actually call the Hesiod functions, put -DHESIOD on the CPPFLAGS line below.
@@ -89,9 +89,9 @@ diff -ru /home/netbsd/src/lib/libc/Makefile ./Makefile
  
  
  # workaround for I18N stuffs: build singlebyte setlocale() for libc.a,
-diff -ru /home/netbsd/src/lib/libc/Makefile.inc ./Makefile.inc
---- /home/netbsd/src/lib/libc/Makefile.inc	2010-05-31 03:02:07.000000000 +0000
-+++ ./Makefile.inc	2011-05-03 13:58:30.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/Makefile.inc lib/nbsd_libc/Makefile.inc
+--- nbsdsrc/src/lib/libc/Makefile.inc	Sun May 30 08:28:53 2010
++++ lib/nbsd_libc/Makefile.inc	Tue May  3 13:58:30 2011
 @@ -19,14 +19,22 @@
  
  USE_FORT?=	yes
@@ -115,18 +115,18 @@ diff -ru /home/netbsd/src/lib/libc/Makefile.inc ./Makefile.inc
  
  .if (${USE_HESIOD} != "no")
  CPPFLAGS+=	-DHESIOD
-diff -ru /home/netbsd/src/lib/libc/arch/i386/Makefile.inc ./arch/i386/Makefile.inc
---- /home/netbsd/src/lib/libc/arch/i386/Makefile.inc	2006-06-17 18:04:23.000000000 +0000
-+++ ./arch/i386/Makefile.inc	2011-04-29 11:53:01.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/arch/i386/Makefile.inc lib/nbsd_libc/arch/i386/Makefile.inc
+--- nbsdsrc/src/lib/libc/arch/i386/Makefile.inc	Sat Jun 17 18:04:23 2006
++++ lib/nbsd_libc/arch/i386/Makefile.inc	Fri Apr 29 11:53:01 2011
 @@ -1,3 +1,5 @@
  #	$NetBSD: Makefile.inc,v 1.20 2006/06/17 18:04:23 uwe Exp $
  
 +.if !defined(__MINIX)
  SRCS+=	__sigaction14_sigtramp.c __sigtramp2.S
 +.endif
-diff -ru /home/netbsd/src/lib/libc/arch/i386/gen/Makefile.inc ./arch/i386/gen/Makefile.inc
---- /home/netbsd/src/lib/libc/arch/i386/gen/Makefile.inc	2009-12-06 07:12:17.000000000 +0000
-+++ ./arch/i386/gen/Makefile.inc	2011-04-29 11:53:01.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/arch/i386/gen/Makefile.inc lib/nbsd_libc/arch/i386/gen/Makefile.inc
+--- nbsdsrc/src/lib/libc/arch/i386/gen/Makefile.inc	Sun Dec  6 07:12:17 2009
++++ lib/nbsd_libc/arch/i386/gen/Makefile.inc	Fri Apr 29 11:53:01 2011
 @@ -7,10 +7,18 @@
  
  SRCS+=	setjmp.S _setjmp.S sigsetjmp.S
@@ -146,9 +146,9 @@ diff -ru /home/netbsd/src/lib/libc/arch/i386/gen/Makefile.inc ./arch/i386/gen/Ma
  
  # Common ieee754 constants and functions
  SRCS+=	infinityf_ieee754.c infinity_ieee754.c
-diff -ru /home/netbsd/src/lib/libc/arch/i386/gen/setjmp.S ./arch/i386/gen/setjmp.S
---- /home/netbsd/src/lib/libc/arch/i386/gen/setjmp.S	2005-09-13 01:44:08.000000000 +0000
-+++ ./arch/i386/gen/setjmp.S	2011-04-29 11:53:01.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/arch/i386/gen/setjmp.S lib/nbsd_libc/arch/i386/gen/setjmp.S
+--- nbsdsrc/src/lib/libc/arch/i386/gen/setjmp.S	Tue Sep 13 01:44:08 2005
++++ lib/nbsd_libc/arch/i386/gen/setjmp.S	Fri Apr 29 11:53:01 2011
 @@ -85,7 +85,11 @@
  	PIC_PROLOGUE
  	pushl	$0
@@ -161,9 +161,9 @@ diff -ru /home/netbsd/src/lib/libc/arch/i386/gen/setjmp.S ./arch/i386/gen/setjmp
  #ifdef PIC
  	call	PIC_PLT(_C_LABEL(__sigprocmask14))
  #else
-diff -ru /home/netbsd/src/lib/libc/arch/i386/gen/sigsetjmp.S ./arch/i386/gen/sigsetjmp.S
---- /home/netbsd/src/lib/libc/arch/i386/gen/sigsetjmp.S	2005-09-13 01:44:08.000000000 +0000
-+++ ./arch/i386/gen/sigsetjmp.S	2011-04-29 11:53:01.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/arch/i386/gen/sigsetjmp.S lib/nbsd_libc/arch/i386/gen/sigsetjmp.S
+--- nbsdsrc/src/lib/libc/arch/i386/gen/sigsetjmp.S	Tue Sep 13 01:44:08 2005
++++ lib/nbsd_libc/arch/i386/gen/sigsetjmp.S	Fri Apr 29 11:53:01 2011
 @@ -85,7 +85,11 @@
  	PIC_PROLOGUE
  	pushl	$0
@@ -176,9 +176,9 @@ diff -ru /home/netbsd/src/lib/libc/arch/i386/gen/sigsetjmp.S ./arch/i386/gen/sig
  #ifdef PIC
  	call	PIC_PLT(_C_LABEL(__sigprocmask14))
  #else
-diff -ru /home/netbsd/src/lib/libc/cdb/cdbr.c ./cdb/cdbr.c
---- /home/netbsd/src/lib/libc/cdb/cdbr.c	2010-06-04 03:06:19.000000000 +0000
-+++ ./cdb/cdbr.c	2011-04-29 11:53:01.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/cdb/cdbr.c lib/nbsd_libc/cdb/cdbr.c
+--- nbsdsrc/src/lib/libc/cdb/cdbr.c	Thu Jun  3 12:40:52 2010
++++ lib/nbsd_libc/cdb/cdbr.c	Fri Apr 29 11:53:01 2011
 @@ -122,7 +122,22 @@
  		cdbr->index_size = 4;
  
@@ -202,9 +202,9 @@ diff -ru /home/netbsd/src/lib/libc/cdb/cdbr.c ./cdb/cdbr.c
  	close(fd);
  
  	if (cdbr->mmap_base == MAP_FAILED) {
-diff -ru /home/netbsd/src/lib/libc/citrus/citrus_mmap.c ./citrus/citrus_mmap.c
---- /home/netbsd/src/lib/libc/citrus/citrus_mmap.c	2005-01-19 00:52:37.000000000 +0000
-+++ ./citrus/citrus_mmap.c	2011-04-29 11:53:01.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/citrus/citrus_mmap.c lib/nbsd_libc/citrus/citrus_mmap.c
+--- nbsdsrc/src/lib/libc/citrus/citrus_mmap.c	Wed Jan 19 00:52:37 2005
++++ lib/nbsd_libc/citrus/citrus_mmap.c	Fri Apr 29 11:53:01 2011
 @@ -74,12 +74,25 @@
  		goto error;
  	}
@@ -231,10 +231,10 @@ diff -ru /home/netbsd/src/lib/libc/citrus/citrus_mmap.c ./citrus/citrus_mmap.c
  	_region_init(r, head, (size_t)st.st_size);
  
  error:
-diff -ru /home/netbsd/src/lib/libc/compat-43/Makefile.inc ./compat-43/Makefile.inc
---- /home/netbsd/src/lib/libc/compat-43/Makefile.inc	2006-04-24 17:15:06.000000000 +0000
-+++ ./compat-43/Makefile.inc	2011-04-29 11:53:01.000000000 +0000
-@@ -4,12 +4,20 @@
+diff -ru nbsdsrc/src/lib/libc/compat-43/Makefile.inc lib/nbsd_libc/compat-43/Makefile.inc
+--- nbsdsrc/src/lib/libc/compat-43/Makefile.inc	Mon Apr 24 17:15:06 2006
++++ lib/nbsd_libc/compat-43/Makefile.inc	Fri Apr 29 11:53:01 2011
+@@ -4,11 +4,19 @@
  # compat-43 sources
  .PATH: ${ARCHDIR}/compat-43 ${.CURDIR}/compat-43
  
@@ -250,14 +250,13 @@ diff -ru /home/netbsd/src/lib/libc/compat-43/Makefile.inc ./compat-43/Makefile.i
  	setrgid.c setruid.c sigcompat.c
  .if !defined(AUDIT)
  SRCS+=	getwd.c
- .endif
 +.endif
+ .endif
  
  # XXX this is to get <compat/sys/signal.h>
- CPPFLAGS.sigcompat.c+=	-I${NETBSDSRCDIR}/sys
-diff -ru /home/netbsd/src/lib/libc/db/btree/bt_open.c ./db/btree/bt_open.c
---- /home/netbsd/src/lib/libc/db/btree/bt_open.c	2008-09-11 12:58:00.000000000 +0000
-+++ ./db/btree/bt_open.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/db/btree/bt_open.c lib/nbsd_libc/db/btree/bt_open.c
+--- nbsdsrc/src/lib/libc/db/btree/bt_open.c	Thu Sep 11 12:58:00 2008
++++ lib/nbsd_libc/db/btree/bt_open.c	Fri Apr 29 11:53:02 2011
 @@ -262,7 +262,11 @@
  		 * Don't overflow the page offset type.
  		 */
@@ -270,9 +269,9 @@ diff -ru /home/netbsd/src/lib/libc/db/btree/bt_open.c ./db/btree/bt_open.c
  			if (b.psize < MINPSIZE)
  				b.psize = MINPSIZE;
  			if (b.psize > MAX_PAGE_OFFSET + 1)
-diff -ru /home/netbsd/src/lib/libc/db/db/db.c ./db/db/db.c
---- /home/netbsd/src/lib/libc/db/db/db.c	2008-09-11 12:58:00.000000000 +0000
-+++ ./db/db/db.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/db/db/db.c lib/nbsd_libc/db/db/db.c
+--- nbsdsrc/src/lib/libc/db/db/db.c	Thu Sep 11 12:58:00 2008
++++ lib/nbsd_libc/db/db/db.c	Fri Apr 29 11:53:02 2011
 @@ -57,9 +57,15 @@
  {
  
@@ -289,9 +288,9 @@ diff -ru /home/netbsd/src/lib/libc/db/db/db.c ./db/db/db.c
  
  	if ((flags & ~(USE_OPEN_FLAGS | DB_FLAGS)) == 0)
  		switch (type) {
-diff -ru /home/netbsd/src/lib/libc/db/hash/hash.c ./db/hash/hash.c
---- /home/netbsd/src/lib/libc/db/hash/hash.c	2009-02-12 06:35:54.000000000 +0000
-+++ ./db/hash/hash.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/db/hash/hash.c lib/nbsd_libc/db/hash/hash.c
+--- nbsdsrc/src/lib/libc/db/hash/hash.c	Thu Feb 12 06:35:54 2009
++++ lib/nbsd_libc/db/hash/hash.c	Fri Apr 29 11:53:02 2011
 @@ -301,7 +301,11 @@
  	if (file != NULL) {
  		if (stat(file, &statbuf))
@@ -304,9 +303,9 @@ diff -ru /home/netbsd/src/lib/libc/db/hash/hash.c ./db/hash/hash.c
  		hashp->BSHIFT = __log2((uint32_t)hashp->BSIZE);
  	}
  
-diff -ru /home/netbsd/src/lib/libc/dlfcn/dlfcn_elf.c ./dlfcn/dlfcn_elf.c
---- /home/netbsd/src/lib/libc/dlfcn/dlfcn_elf.c	2010-10-17 03:03:40.000000000 +0000
-+++ ./dlfcn/dlfcn_elf.c	2011-05-04 07:59:27.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/dlfcn/dlfcn_elf.c lib/nbsd_libc/dlfcn/dlfcn_elf.c
+--- nbsdsrc/src/lib/libc/dlfcn/dlfcn_elf.c	Sat Oct 16 10:27:07 2010
++++ lib/nbsd_libc/dlfcn/dlfcn_elf.c	Wed May  4 07:59:27 2011
 @@ -48,7 +48,12 @@
  #define	dl_iterate_phdr		___dl_iterate_phdr
  
@@ -333,9 +332,9 @@ diff -ru /home/netbsd/src/lib/libc/dlfcn/dlfcn_elf.c ./dlfcn/dlfcn_elf.c
  	return 0;
  }
 +#endif
-diff -ru /home/netbsd/src/lib/libc/gdtoa/gdtoa_locks.c ./gdtoa/gdtoa_locks.c
---- /home/netbsd/src/lib/libc/gdtoa/gdtoa_locks.c	2006-01-25 15:36:13.000000000 +0000
-+++ ./gdtoa/gdtoa_locks.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gdtoa/gdtoa_locks.c lib/nbsd_libc/gdtoa/gdtoa_locks.c
+--- nbsdsrc/src/lib/libc/gdtoa/gdtoa_locks.c	Wed Jan 25 15:36:13 2006
++++ lib/nbsd_libc/gdtoa/gdtoa_locks.c	Fri Apr 29 11:53:02 2011
 @@ -7,4 +7,6 @@
  
  #include "gdtoaimp.h"
@@ -343,10 +342,10 @@ diff -ru /home/netbsd/src/lib/libc/gdtoa/gdtoa_locks.c ./gdtoa/gdtoa_locks.c
 +#ifdef _REENTRANT /* !__minix */
  mutex_t __gdtoa_locks[2] = { MUTEX_INITIALIZER, MUTEX_INITIALIZER };
 +#endif /* _REENTRANT */
-diff -ru /home/netbsd/src/lib/libc/gen/Makefile.inc ./gen/Makefile.inc
---- /home/netbsd/src/lib/libc/gen/Makefile.inc	2010-12-13 03:52:36.000000000 +0000
-+++ ./gen/Makefile.inc	2011-04-29 11:53:02.000000000 +0000
-@@ -2,8 +2,56 @@
+diff -ru nbsdsrc/src/lib/libc/gen/Makefile.inc lib/nbsd_libc/gen/Makefile.inc
+--- nbsdsrc/src/lib/libc/gen/Makefile.inc	Sun Dec 12 20:22:48 2010
++++ lib/nbsd_libc/gen/Makefile.inc	Fri Apr 29 11:53:02 2011
+@@ -2,9 +2,57 @@
  #	from: @(#)Makefile.inc	8.6 (Berkeley) 5/4/95
  
  # gen sources
@@ -371,7 +370,7 @@ diff -ru /home/netbsd/src/lib/libc/gen/Makefile.inc ./gen/Makefile.inc
 +# Already in getprogname
 +#	setprogname.c
 +
-+SRCS+= 	_errno.c alarm.c alphasort.c arc4random.c assert.c basename.c clock.c \
+ SRCS+= 	_errno.c alarm.c alphasort.c arc4random.c assert.c basename.c clock.c \
 +	closedir.c ctermid.c ctype_.c daemon.c \
 +	dehumanize_number.c dirname.c err.c errx.c \
 +	errlist.c errno.c execl.c execle.c execlp.c execv.c execvp.c \
@@ -400,9 +399,10 @@ diff -ru /home/netbsd/src/lib/libc/gen/Makefile.inc ./gen/Makefile.inc
 +	utmpx.c valloc.c vis.c warn.c warnx.c \
 +	vwarn.c vwarnx.c verr.c verrx.c wait.c waitpid.c wordexp.c
 +.else
- SRCS+= 	_errno.c alarm.c alphasort.c arc4random.c assert.c basename.c clock.c \
++SRCS+= 	_errno.c alarm.c alphasort.c arc4random.c assert.c basename.c clock.c \
  	closedir.c closefrom.c confstr.c ctermid.c ctype_.c daemon.c \
  	dehumanize_number.c devname.c dirname.c disklabel.c err.c errx.c \
+ 	errlist.c errno.c execl.c execle.c execlp.c execv.c execvp.c \
 @@ -32,6 +80,7 @@
  	toupper_.c ualarm.c ulimit.c uname.c unvis.c usleep.c utime.c utmp.c \
  	utmpx.c valloc.c vis.c wait.c wait3.c waitpid.c warn.c warnx.c \
@@ -424,9 +424,9 @@ diff -ru /home/netbsd/src/lib/libc/gen/Makefile.inc ./gen/Makefile.inc
 +.endif
  
  CLEANFILES+= errlist.c
-diff -ru /home/netbsd/src/lib/libc/gen/_verr.c ./gen/_verr.c
---- /home/netbsd/src/lib/libc/gen/_verr.c	2005-09-13 01:44:09.000000000 +0000
-+++ ./gen/_verr.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gen/_verr.c lib/nbsd_libc/gen/_verr.c
+--- nbsdsrc/src/lib/libc/gen/_verr.c	Tue Sep 13 01:44:09 2005
++++ lib/nbsd_libc/gen/_verr.c	Fri Apr 29 11:53:02 2011
 @@ -13,6 +13,9 @@
  #if defined(__indr_reference)
  __indr_reference(_verr, verr)
@@ -437,9 +437,9 @@ diff -ru /home/netbsd/src/lib/libc/gen/_verr.c ./gen/_verr.c
  
  __dead void _verr(int, const char *, _BSD_VA_LIST_);
  
-diff -ru /home/netbsd/src/lib/libc/gen/_verrx.c ./gen/_verrx.c
---- /home/netbsd/src/lib/libc/gen/_verrx.c	2005-09-13 01:44:09.000000000 +0000
-+++ ./gen/_verrx.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gen/_verrx.c lib/nbsd_libc/gen/_verrx.c
+--- nbsdsrc/src/lib/libc/gen/_verrx.c	Tue Sep 13 01:44:09 2005
++++ lib/nbsd_libc/gen/_verrx.c	Fri Apr 29 11:53:02 2011
 @@ -13,6 +13,9 @@
  #if defined(__indr_reference)
  __indr_reference(_verrx, verrx)
@@ -450,9 +450,9 @@ diff -ru /home/netbsd/src/lib/libc/gen/_verrx.c ./gen/_verrx.c
  
  __dead void _verrx(int, const char *, _BSD_VA_LIST_);
  
-diff -ru /home/netbsd/src/lib/libc/gen/_vwarn.c ./gen/_vwarn.c
---- /home/netbsd/src/lib/libc/gen/_vwarn.c	2005-09-13 01:44:09.000000000 +0000
-+++ ./gen/_vwarn.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gen/_vwarn.c lib/nbsd_libc/gen/_vwarn.c
+--- nbsdsrc/src/lib/libc/gen/_vwarn.c	Tue Sep 13 01:44:09 2005
++++ lib/nbsd_libc/gen/_vwarn.c	Fri Apr 29 11:53:02 2011
 @@ -13,6 +13,9 @@
  #if defined(__indr_reference)
  __indr_reference(_vwarn, vwarn)
@@ -463,9 +463,9 @@ diff -ru /home/netbsd/src/lib/libc/gen/_vwarn.c ./gen/_vwarn.c
  
  void _vwarn(const char *, _BSD_VA_LIST_);
  
-diff -ru /home/netbsd/src/lib/libc/gen/_vwarnx.c ./gen/_vwarnx.c
---- /home/netbsd/src/lib/libc/gen/_vwarnx.c	2005-09-13 01:44:09.000000000 +0000
-+++ ./gen/_vwarnx.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gen/_vwarnx.c lib/nbsd_libc/gen/_vwarnx.c
+--- nbsdsrc/src/lib/libc/gen/_vwarnx.c	Tue Sep 13 01:44:09 2005
++++ lib/nbsd_libc/gen/_vwarnx.c	Fri Apr 29 11:53:02 2011
 @@ -13,6 +13,9 @@
  #if defined(__indr_reference)
  __indr_reference(_vwarnx, vwarnx)
@@ -476,9 +476,9 @@ diff -ru /home/netbsd/src/lib/libc/gen/_vwarnx.c ./gen/_vwarnx.c
  
  void _vwarnx(const char *, _BSD_VA_LIST_);
  
-diff -ru /home/netbsd/src/lib/libc/gen/_warn.c ./gen/_warn.c
---- /home/netbsd/src/lib/libc/gen/_warn.c	2005-09-13 01:44:09.000000000 +0000
-+++ ./gen/_warn.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gen/_warn.c lib/nbsd_libc/gen/_warn.c
+--- nbsdsrc/src/lib/libc/gen/_warn.c	Tue Sep 13 01:44:09 2005
++++ lib/nbsd_libc/gen/_warn.c	Fri Apr 29 11:53:02 2011
 @@ -24,7 +24,11 @@
  	va_list ap;
  
@@ -491,9 +491,9 @@ diff -ru /home/netbsd/src/lib/libc/gen/_warn.c ./gen/_warn.c
  	va_end(ap);
  }
  #endif
-diff -ru /home/netbsd/src/lib/libc/gen/_warnx.c ./gen/_warnx.c
---- /home/netbsd/src/lib/libc/gen/_warnx.c	2005-09-13 01:44:09.000000000 +0000
-+++ ./gen/_warnx.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gen/_warnx.c lib/nbsd_libc/gen/_warnx.c
+--- nbsdsrc/src/lib/libc/gen/_warnx.c	Tue Sep 13 01:44:09 2005
++++ lib/nbsd_libc/gen/_warnx.c	Fri Apr 29 11:53:02 2011
 @@ -24,7 +24,11 @@
  	va_list ap;
  
@@ -506,9 +506,9 @@ diff -ru /home/netbsd/src/lib/libc/gen/_warnx.c ./gen/_warnx.c
  	va_end(ap);
  }
  
-diff -ru /home/netbsd/src/lib/libc/gen/closedir.c ./gen/closedir.c
---- /home/netbsd/src/lib/libc/gen/closedir.c	2010-09-26 03:01:02.000000000 +0000
-+++ ./gen/closedir.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gen/closedir.c lib/nbsd_libc/gen/closedir.c
+--- nbsdsrc/src/lib/libc/gen/closedir.c	Sun Sep 26 02:26:59 2010
++++ lib/nbsd_libc/gen/closedir.c	Fri Apr 29 11:53:02 2011
 @@ -38,6 +38,11 @@
  #endif
  #endif /* LIBC_SCCS and not lint */
@@ -521,23 +521,22 @@ diff -ru /home/netbsd/src/lib/libc/gen/closedir.c ./gen/closedir.c
  #include "namespace.h"
  #include "reentrant.h"
  #include "extern.h"
-diff -ru /home/netbsd/src/lib/libc/gen/fts.c ./gen/fts.c
---- /home/netbsd/src/lib/libc/gen/fts.c	2009-11-02 17:17:34.000000000 +0000
-+++ ./gen/fts.c	2011-04-29 11:53:02.000000000 +0000
-@@ -56,8 +56,10 @@
+diff -ru nbsdsrc/src/lib/libc/gen/fts.c lib/nbsd_libc/gen/fts.c
+--- nbsdsrc/src/lib/libc/gen/fts.c	Mon Nov  2 17:17:34 2009
++++ lib/nbsd_libc/gen/fts.c	Fri Apr 29 11:53:02 2011
+@@ -56,7 +56,9 @@
  #include <unistd.h>
  
  #if ! HAVE_NBTOOL_CONFIG_H
 +#ifndef __minix
  #define	HAVE_STRUCT_DIRENT_D_NAMLEN
- #endif
 +#endif
+ #endif
  
  static FTSENT	*fts_alloc(FTS *, const char *, size_t);
- static FTSENT	*fts_build(FTS *, int);
-diff -ru /home/netbsd/src/lib/libc/gen/getcwd.c ./gen/getcwd.c
---- /home/netbsd/src/lib/libc/gen/getcwd.c	2011-01-20 03:02:11.000000000 +0000
-+++ ./gen/getcwd.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gen/getcwd.c lib/nbsd_libc/gen/getcwd.c
+--- nbsdsrc/src/lib/libc/gen/getcwd.c	Thu Jan 20 02:57:00 2011
++++ lib/nbsd_libc/gen/getcwd.c	Fri Apr 29 11:53:02 2011
 @@ -54,8 +54,12 @@
  #include "extern.h"
  
@@ -551,9 +550,9 @@ diff -ru /home/netbsd/src/lib/libc/gen/getcwd.c ./gen/getcwd.c
  __weak_alias(realpath,_realpath)
  
  #if defined(_FORTIFY_SOURCE) && !defined(__lint__)
-diff -ru /home/netbsd/src/lib/libc/gen/getgrent.c ./gen/getgrent.c
---- /home/netbsd/src/lib/libc/gen/getgrent.c	2008-04-28 20:22:59.000000000 +0000
-+++ ./gen/getgrent.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gen/getgrent.c lib/nbsd_libc/gen/getgrent.c
+--- nbsdsrc/src/lib/libc/gen/getgrent.c	Mon Apr 28 20:22:59 2008
++++ lib/nbsd_libc/gen/getgrent.c	Fri Apr 29 11:53:02 2011
 @@ -481,7 +481,11 @@
  _files_getgrgid(void *nsrv, void *nscb, va_list ap)
  {
@@ -686,9 +685,9 @@ diff -ru /home/netbsd/src/lib/libc/gen/getgrent.c ./gen/getgrent.c
  	mutex_unlock(&__grmutex);
  	switch (rv) {
  	case NS_SUCCESS:
-diff -ru /home/netbsd/src/lib/libc/gen/getgroupmembership.c ./gen/getgroupmembership.c
---- /home/netbsd/src/lib/libc/gen/getgroupmembership.c	2008-04-28 20:22:59.000000000 +0000
-+++ ./gen/getgroupmembership.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gen/getgroupmembership.c lib/nbsd_libc/gen/getgroupmembership.c
+--- nbsdsrc/src/lib/libc/gen/getgroupmembership.c	Mon Apr 28 20:22:59 2008
++++ lib/nbsd_libc/gen/getgroupmembership.c	Fri Apr 29 11:53:02 2011
 @@ -101,7 +101,11 @@
  {
  	int		*result	= va_arg(ap, int *);
@@ -761,9 +760,9 @@ diff -ru /home/netbsd/src/lib/libc/gen/getgroupmembership.c ./gen/getgroupmember
  	mutex_unlock(&__grmutex);
  
  	if (*groupc > maxgrp)			/* too many groups found */
-diff -ru /home/netbsd/src/lib/libc/gen/getlogin.c ./gen/getlogin.c
---- /home/netbsd/src/lib/libc/gen/getlogin.c	2009-01-11 02:46:27.000000000 +0000
-+++ ./gen/getlogin.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gen/getlogin.c lib/nbsd_libc/gen/getlogin.c
+--- nbsdsrc/src/lib/libc/gen/getlogin.c	Sun Jan 11 02:46:27 2009
++++ lib/nbsd_libc/gen/getlogin.c	Fri Apr 29 11:53:02 2011
 @@ -78,7 +78,9 @@
  #ifdef __weak_alias
  __weak_alias(getlogin,_getlogin)
@@ -787,9 +786,9 @@ diff -ru /home/netbsd/src/lib/libc/gen/getlogin.c ./gen/getlogin.c
  	return (retval);
  }
 +#endif 
-diff -ru /home/netbsd/src/lib/libc/gen/getpwent.c ./gen/getpwent.c
---- /home/netbsd/src/lib/libc/gen/getpwent.c	2010-03-24 03:02:14.000000000 +0000
-+++ ./gen/getpwent.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gen/getpwent.c lib/nbsd_libc/gen/getpwent.c
+--- nbsdsrc/src/lib/libc/gen/getpwent.c	Tue Mar 23 20:28:59 2010
++++ lib/nbsd_libc/gen/getpwent.c	Fri Apr 29 11:53:02 2011
 @@ -671,7 +671,11 @@
  _files_getpwuid(void *nsrv, void *nscb, va_list ap)
  {
@@ -867,12 +866,12 @@ diff -ru /home/netbsd/src/lib/libc/gen/getpwent.c ./gen/getpwent.c
  		break;
  	case _PW_KEYBYUID:
 +#ifdef __minix
-+		rv = nsdispatch(NULL, compatuiddtab,
-+		    NSDB_PASSWD_COMPAT, "getpwuid_r", __nsdefaultnis,
-+		    &crv, (int)uid, pw, buffer, buflen, &cpw);
-+#else
  		rv = nsdispatch(NULL, compatuiddtab,
  		    NSDB_PASSWD_COMPAT, "getpwuid_r", __nsdefaultnis,
++		    &crv, (int)uid, pw, buffer, buflen, &cpw);
++#else
++		rv = nsdispatch(NULL, compatuiddtab,
++		    NSDB_PASSWD_COMPAT, "getpwuid_r", __nsdefaultnis,
  		    &crv, uid, pw, buffer, buflen, &cpw);
 +#endif
  		break;
@@ -907,10 +906,10 @@ diff -ru /home/netbsd/src/lib/libc/gen/getpwent.c ./gen/getpwent.c
  
  	mutex_lock(&_pwmutex);
 +#ifdef __minix
-+	rv = nsdispatch(NULL, dtab, NSDB_PASSWD, "getpwuid", __nsdefaultcompat,
+ 	rv = nsdispatch(NULL, dtab, NSDB_PASSWD, "getpwuid", __nsdefaultcompat,
 +	    &retval, (int)uid);
 +#else
- 	rv = nsdispatch(NULL, dtab, NSDB_PASSWD, "getpwuid", __nsdefaultcompat,
++	rv = nsdispatch(NULL, dtab, NSDB_PASSWD, "getpwuid", __nsdefaultcompat,
  	    &retval, uid);
 +#endif
  	mutex_unlock(&_pwmutex);
@@ -921,19 +920,19 @@ diff -ru /home/netbsd/src/lib/libc/gen/getpwent.c ./gen/getpwent.c
  	retval = 0;
  	mutex_lock(&_pwmutex);
 +#ifdef __minix
-+	r = nsdispatch(NULL, dtab, NSDB_PASSWD, "getpwuid_r", __nsdefaultcompat,
+ 	r = nsdispatch(NULL, dtab, NSDB_PASSWD, "getpwuid_r", __nsdefaultcompat,
 +	    &retval, (int)uid, pwd, buffer, buflen, result);
 +#else
- 	r = nsdispatch(NULL, dtab, NSDB_PASSWD, "getpwuid_r", __nsdefaultcompat,
++	r = nsdispatch(NULL, dtab, NSDB_PASSWD, "getpwuid_r", __nsdefaultcompat,
  	    &retval, uid, pwd, buffer, buflen, result);
 +#endif
 +
  	mutex_unlock(&_pwmutex);
  	switch (r) {
  	case NS_SUCCESS:
-diff -ru /home/netbsd/src/lib/libc/gen/gr_private.h ./gen/gr_private.h
---- /home/netbsd/src/lib/libc/gen/gr_private.h	2008-04-28 20:22:59.000000000 +0000
-+++ ./gen/gr_private.h	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gen/gr_private.h lib/nbsd_libc/gen/gr_private.h
+--- nbsdsrc/src/lib/libc/gen/gr_private.h	Mon Apr 28 20:22:59 2008
++++ lib/nbsd_libc/gen/gr_private.h	Fri Apr 29 11:53:02 2011
 @@ -40,11 +40,13 @@
  #define _GROUP_COMPAT	/* "group" defaults to compat, so always provide it */
  
@@ -948,9 +947,9 @@ diff -ru /home/netbsd/src/lib/libc/gen/gr_private.h ./gen/gr_private.h
  
  	/*
  	 * files methods
-diff -ru /home/netbsd/src/lib/libc/gen/initdir.c ./gen/initdir.c
---- /home/netbsd/src/lib/libc/gen/initdir.c	2010-09-26 02:26:59.000000000 +0000
-+++ ./gen/initdir.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gen/initdir.c lib/nbsd_libc/gen/initdir.c
+--- nbsdsrc/src/lib/libc/gen/initdir.c	Sun Sep 26 02:26:59 2010
++++ lib/nbsd_libc/gen/initdir.c	Fri Apr 29 11:53:02 2011
 @@ -35,6 +35,14 @@
  #endif /* LIBC_SCCS and not lint */
  
@@ -978,9 +977,9 @@ diff -ru /home/netbsd/src/lib/libc/gen/initdir.c ./gen/initdir.c
  					}
  
  					free(dpv);
-diff -ru /home/netbsd/src/lib/libc/gen/opendir.c ./gen/opendir.c
---- /home/netbsd/src/lib/libc/gen/opendir.c	2010-09-26 03:01:02.000000000 +0000
-+++ ./gen/opendir.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gen/opendir.c lib/nbsd_libc/gen/opendir.c
+--- nbsdsrc/src/lib/libc/gen/opendir.c	Sun Sep 26 02:26:59 2010
++++ lib/nbsd_libc/gen/opendir.c	Fri Apr 29 11:53:02 2011
 @@ -40,6 +40,12 @@
  
  #include "namespace.h"
@@ -1015,9 +1014,9 @@ diff -ru /home/netbsd/src/lib/libc/gen/opendir.c ./gen/opendir.c
  
  	dirp->dd_flags = flags;
  	error = _initdir(dirp, fd, name);
-diff -ru /home/netbsd/src/lib/libc/gen/readdir.c ./gen/readdir.c
---- /home/netbsd/src/lib/libc/gen/readdir.c	2010-09-16 03:01:30.000000000 +0000
-+++ ./gen/readdir.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gen/readdir.c lib/nbsd_libc/gen/readdir.c
+--- nbsdsrc/src/lib/libc/gen/readdir.c	Thu Sep 16 02:38:50 2010
++++ lib/nbsd_libc/gen/readdir.c	Fri Apr 29 11:53:02 2011
 @@ -40,6 +40,12 @@
  
  #include "namespace.h"
@@ -1042,9 +1041,9 @@ diff -ru /home/netbsd/src/lib/libc/gen/readdir.c ./gen/readdir.c
  		return (dp);
  	}
  }
-diff -ru /home/netbsd/src/lib/libc/gen/rewinddir.c ./gen/rewinddir.c
---- /home/netbsd/src/lib/libc/gen/rewinddir.c	2010-09-26 03:01:02.000000000 +0000
-+++ ./gen/rewinddir.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gen/rewinddir.c lib/nbsd_libc/gen/rewinddir.c
+--- nbsdsrc/src/lib/libc/gen/rewinddir.c	Sun Sep 26 02:26:59 2010
++++ lib/nbsd_libc/gen/rewinddir.c	Fri Apr 29 11:53:02 2011
 @@ -40,6 +40,11 @@
  
  #include "namespace.h"
@@ -1057,9 +1056,9 @@ diff -ru /home/netbsd/src/lib/libc/gen/rewinddir.c ./gen/rewinddir.c
  #include "extern.h"
  #include <sys/types.h>
  
-diff -ru /home/netbsd/src/lib/libc/gen/scandir.c ./gen/scandir.c
---- /home/netbsd/src/lib/libc/gen/scandir.c	2007-06-09 23:57:25.000000000 +0000
-+++ ./gen/scandir.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gen/scandir.c lib/nbsd_libc/gen/scandir.c
+--- nbsdsrc/src/lib/libc/gen/scandir.c	Sat Jun  9 23:57:25 2007
++++ lib/nbsd_libc/gen/scandir.c	Fri Apr 29 11:53:02 2011
 @@ -130,9 +130,13 @@
  			goto bad2;
  		p->d_fileno = d->d_fileno;
@@ -1074,9 +1073,9 @@ diff -ru /home/netbsd/src/lib/libc/gen/scandir.c ./gen/scandir.c
  		names[nitems++] = p;
  	}
  	(void)closedir(dirp);
-diff -ru /home/netbsd/src/lib/libc/gen/seekdir.c ./gen/seekdir.c
---- /home/netbsd/src/lib/libc/gen/seekdir.c	2006-05-17 20:36:50.000000000 +0000
-+++ ./gen/seekdir.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gen/seekdir.c lib/nbsd_libc/gen/seekdir.c
+--- nbsdsrc/src/lib/libc/gen/seekdir.c	Wed May 17 20:36:50 2006
++++ lib/nbsd_libc/gen/seekdir.c	Fri Apr 29 11:53:02 2011
 @@ -40,6 +40,9 @@
  
  #include "namespace.h"
@@ -1087,9 +1086,9 @@ diff -ru /home/netbsd/src/lib/libc/gen/seekdir.c ./gen/seekdir.c
  #include "extern.h"
  #include <sys/param.h>
  
-diff -ru /home/netbsd/src/lib/libc/gen/syslog.c ./gen/syslog.c
---- /home/netbsd/src/lib/libc/gen/syslog.c	2010-05-14 04:47:24.000000000 +0000
-+++ ./gen/syslog.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gen/syslog.c lib/nbsd_libc/gen/syslog.c
+--- nbsdsrc/src/lib/libc/gen/syslog.c	Thu May 13 22:40:14 2010
++++ lib/nbsd_libc/gen/syslog.c	Fri Apr 29 11:53:02 2011
 @@ -492,7 +492,9 @@
  	/* AF_UNIX address of local logger */
  	static const struct sockaddr_un sun = {
@@ -1100,9 +1099,9 @@ diff -ru /home/netbsd/src/lib/libc/gen/syslog.c ./gen/syslog.c
  		.sun_path = _PATH_LOG,
  	};
  
-diff -ru /home/netbsd/src/lib/libc/gen/telldir.c ./gen/telldir.c
---- /home/netbsd/src/lib/libc/gen/telldir.c	2008-05-04 18:53:26.000000000 +0000
-+++ ./gen/telldir.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gen/telldir.c lib/nbsd_libc/gen/telldir.c
+--- nbsdsrc/src/lib/libc/gen/telldir.c	Sun May  4 18:53:26 2008
++++ lib/nbsd_libc/gen/telldir.c	Fri Apr 29 11:53:02 2011
 @@ -40,6 +40,11 @@
  
  #include "namespace.h"
@@ -1115,9 +1114,9 @@ diff -ru /home/netbsd/src/lib/libc/gen/telldir.c ./gen/telldir.c
  #include "extern.h"
  #include <sys/param.h>
  
-diff -ru /home/netbsd/src/lib/libc/gen/ttyname.c ./gen/ttyname.c
---- /home/netbsd/src/lib/libc/gen/ttyname.c	2008-06-25 11:47:29.000000000 +0000
-+++ ./gen/ttyname.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gen/ttyname.c lib/nbsd_libc/gen/ttyname.c
+--- nbsdsrc/src/lib/libc/gen/ttyname.c	Wed Jun 25 11:47:29 2008
++++ lib/nbsd_libc/gen/ttyname.c	Fri Apr 29 11:53:02 2011
 @@ -72,7 +72,9 @@
  		mode_t type;
  		dev_t dev;
@@ -1156,9 +1155,9 @@ diff -ru /home/netbsd/src/lib/libc/gen/ttyname.c ./gen/ttyname.c
  		if (len - DEVSZ <= dlen) {
  			/*
  			 * XXX: we return an error if *any* entry does not
-diff -ru /home/netbsd/src/lib/libc/gen/ttyslot.c ./gen/ttyslot.c
---- /home/netbsd/src/lib/libc/gen/ttyslot.c	2009-01-11 02:46:27.000000000 +0000
-+++ ./gen/ttyslot.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gen/ttyslot.c lib/nbsd_libc/gen/ttyslot.c
+--- nbsdsrc/src/lib/libc/gen/ttyslot.c	Sun Jan 11 02:46:27 2009
++++ lib/nbsd_libc/gen/ttyslot.c	Fri Apr 29 11:53:02 2011
 @@ -59,14 +59,20 @@
  	char *p;
  	int cnt;
@@ -1180,9 +1179,9 @@ diff -ru /home/netbsd/src/lib/libc/gen/ttyslot.c ./gen/ttyslot.c
  			ispty = 0;
  		} else
  			continue;
-diff -ru /home/netbsd/src/lib/libc/gen/ulimit.c ./gen/ulimit.c
---- /home/netbsd/src/lib/libc/gen/ulimit.c	2008-04-28 20:22:59.000000000 +0000
-+++ ./gen/ulimit.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gen/ulimit.c lib/nbsd_libc/gen/ulimit.c
+--- nbsdsrc/src/lib/libc/gen/ulimit.c	Mon Apr 28 20:22:59 2008
++++ lib/nbsd_libc/gen/ulimit.c	Fri Apr 29 11:53:02 2011
 @@ -54,12 +54,14 @@
  		if (getrlimit(RLIMIT_FSIZE, &rlimit) == 0)
  			result = (long int)(rlimit.rlim_cur / 512);
@@ -1198,9 +1197,9 @@ diff -ru /home/netbsd/src/lib/libc/gen/ulimit.c ./gen/ulimit.c
  	default:
  		errno = EINVAL;
  	}
-diff -ru /home/netbsd/src/lib/libc/gen/utmpx.c ./gen/utmpx.c
---- /home/netbsd/src/lib/libc/gen/utmpx.c	2009-01-11 02:46:27.000000000 +0000
-+++ ./gen/utmpx.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gen/utmpx.c lib/nbsd_libc/gen/utmpx.c
+--- nbsdsrc/src/lib/libc/gen/utmpx.c	Sun Jan 11 02:46:27 2009
++++ lib/nbsd_libc/gen/utmpx.c	Fri Apr 29 11:53:02 2011
 @@ -336,16 +336,32 @@
  	_DIAGASSERT(file != NULL);
  	_DIAGASSERT(utx != NULL);
@@ -1273,9 +1272,9 @@ diff -ru /home/netbsd/src/lib/libc/gen/utmpx.c ./gen/utmpx.c
  	key.data = &uid;
  	key.size = sizeof(uid);
  	data.data = ll;
-diff -ru /home/netbsd/src/lib/libc/gmon/gmon.c ./gmon/gmon.c
---- /home/netbsd/src/lib/libc/gmon/gmon.c	2011-01-05 03:01:31.000000000 +0000
-+++ ./gmon/gmon.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/gmon/gmon.c lib/nbsd_libc/gmon/gmon.c
+--- nbsdsrc/src/lib/libc/gmon/gmon.c	Wed Jan  5 00:03:52 2011
++++ lib/nbsd_libc/gmon/gmon.c	Fri Apr 29 11:53:02 2011
 @@ -373,8 +373,10 @@
  	struct gmonparam *p = &_gmonparam;
  	struct gmonhdr gmonhdr, *hdr;
@@ -1318,9 +1317,9 @@ diff -ru /home/netbsd/src/lib/libc/gmon/gmon.c ./gmon/gmon.c
  	return rv;
  }
 +#endif /* !__minix */
-diff -ru /home/netbsd/src/lib/libc/include/env.h ./include/env.h
---- /home/netbsd/src/lib/libc/include/env.h	2010-11-14 22:04:36.000000000 +0000
-+++ ./include/env.h	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/include/env.h lib/nbsd_libc/include/env.h
+--- nbsdsrc/src/lib/libc/include/env.h	Sun Nov 14 22:04:36 2010
++++ lib/nbsd_libc/include/env.h	Fri Apr 29 11:53:02 2011
 @@ -56,7 +56,11 @@
  }
  
@@ -1333,9 +1332,9 @@ diff -ru /home/netbsd/src/lib/libc/include/env.h ./include/env.h
  {
  	return true;
  }
-diff -ru /home/netbsd/src/lib/libc/include/namespace.h ./include/namespace.h
---- /home/netbsd/src/lib/libc/include/namespace.h	2010-12-17 03:01:54.000000000 +0000
-+++ ./include/namespace.h	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/include/namespace.h lib/nbsd_libc/include/namespace.h
+--- nbsdsrc/src/lib/libc/include/namespace.h	Thu Dec 16 18:38:06 2010
++++ lib/nbsd_libc/include/namespace.h	Fri Apr 29 11:53:02 2011
 @@ -47,7 +47,9 @@
  #define fork		_fork
  #define fseeko		_fseeko
@@ -1439,17 +1438,17 @@ diff -ru /home/netbsd/src/lib/libc/include/namespace.h ./include/namespace.h
  #endif /* __weak_alias */
  #endif /* !__lint__ */
  
-diff -ru /home/netbsd/src/lib/libc/libcincludes.mk ./libcincludes.mk
---- /home/netbsd/src/lib/libc/libcincludes.mk	2008-10-26 07:28:06.000000000 +0000
-+++ ./libcincludes.mk	2011-04-29 11:53:02.000000000 +0000
-@@ -3,6 +3,24 @@
+diff -ru nbsdsrc/src/lib/libc/libcincludes.mk lib/nbsd_libc/libcincludes.mk
+--- nbsdsrc/src/lib/libc/libcincludes.mk	Sun Oct 26 07:28:06 2008
++++ lib/nbsd_libc/libcincludes.mk	Fri Apr 29 11:53:02 2011
+@@ -3,7 +3,25 @@
  # Makefile fragment shared across several parts that want to look
  # inside libc's include tree.
  
 +.if defined(__MINIX)
 +MACHINE_ARCH= ${MACHINE}
 +MACHINE_CPU= ${MACHINE}
-+.if defined(LIBC_MACHINE_ARCH) && \
+ .if defined(LIBC_MACHINE_ARCH) && \
 +    exists(${MINIXSRCDIR}/lib/nbsd_libc/arch/${LIBC_MACHINE_ARCH}/SYS.h)
 +ARCHSUBDIR=	${LIBC_MACHINE_ARCH}
 +.elif exists(${MINIXSRCDIR}/lib/nbsd_libc/arch/${MACHINE_ARCH}/SYS.h)
@@ -1464,17 +1463,18 @@ diff -ru /home/netbsd/src/lib/libc/libcincludes.mk ./libcincludes.mk
 +
 +ARCHDIR=	${MINIXSRCCDIR}/lib/nbsd_libc/arch/${ARCHSUBDIR}
 +.else
- .if defined(LIBC_MACHINE_ARCH) && \
++.if defined(LIBC_MACHINE_ARCH) && \
      exists(${NETBSDSRCDIR}/lib/libc/arch/${LIBC_MACHINE_ARCH}/SYS.h)
  ARCHSUBDIR=	${LIBC_MACHINE_ARCH}
+ .elif exists(${NETBSDSRCDIR}/lib/libc/arch/${MACHINE_ARCH}/SYS.h)
 @@ -17,3 +35,4 @@
  .endif
  
  ARCHDIR=	${NETBSDSRCDIR}/lib/libc/arch/${ARCHSUBDIR}
 +.endif
-diff -ru /home/netbsd/src/lib/libc/locale/setlocale.c ./locale/setlocale.c
---- /home/netbsd/src/lib/libc/locale/setlocale.c	2010-06-08 03:01:34.000000000 +0000
-+++ ./locale/setlocale.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/locale/setlocale.c lib/nbsd_libc/locale/setlocale.c
+--- nbsdsrc/src/lib/libc/locale/setlocale.c	Mon Jun  7 13:52:30 2010
++++ lib/nbsd_libc/locale/setlocale.c	Fri Apr 29 11:53:02 2011
 @@ -61,6 +61,38 @@
  extern const _locale_category_t _localeio_LC_MESSAGES_desc;
  #endif
@@ -1514,9 +1514,9 @@ diff -ru /home/netbsd/src/lib/libc/locale/setlocale.c ./locale/setlocale.c
  __link_set_add_data(all_categories, _generic_LC_ALL_desc);
  __link_set_add_data(all_categories, _dummy_LC_COLLATE_desc);
  #ifdef WITH_RUNE
-diff -ru /home/netbsd/src/lib/libc/misc/initfini.c ./misc/initfini.c
---- /home/netbsd/src/lib/libc/misc/initfini.c	2010-11-15 03:02:00.000000000 +0000
-+++ ./misc/initfini.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/misc/initfini.c lib/nbsd_libc/misc/initfini.c
+--- nbsdsrc/src/lib/libc/misc/initfini.c	Sun Nov 14 18:11:42 2010
++++ lib/nbsd_libc/misc/initfini.c	Fri Apr 29 11:53:02 2011
 @@ -55,8 +55,10 @@
  	/* Atomic operations */
  	__libc_atomic_init();
@@ -1528,9 +1528,9 @@ diff -ru /home/netbsd/src/lib/libc/misc/initfini.c ./misc/initfini.c
  
  	/* Initialize the atexit mutexes */
  	__libc_atexit_init();
-diff -ru /home/netbsd/src/lib/libc/misc/stack_protector.c ./misc/stack_protector.c
---- /home/netbsd/src/lib/libc/misc/stack_protector.c	2010-12-08 03:01:48.000000000 +0000
-+++ ./misc/stack_protector.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/misc/stack_protector.c lib/nbsd_libc/misc/stack_protector.c
+--- nbsdsrc/src/lib/libc/misc/stack_protector.c	Tue Dec  7 20:10:53 2010
++++ lib/nbsd_libc/misc/stack_protector.c	Fri Apr 29 11:53:02 2011
 @@ -56,24 +56,30 @@
  void
  __guard_setup(void)
@@ -1562,10 +1562,10 @@ diff -ru /home/netbsd/src/lib/libc/misc/stack_protector.c ./misc/stack_protector
  }
  
  /*ARGSUSED*/
-diff -ru /home/netbsd/src/lib/libc/net/Makefile.inc ./net/Makefile.inc
---- /home/netbsd/src/lib/libc/net/Makefile.inc	2009-10-02 02:45:29.000000000 +0000
-+++ ./net/Makefile.inc	2011-04-29 11:53:02.000000000 +0000
-@@ -2,8 +2,22 @@
+diff -ru nbsdsrc/src/lib/libc/net/Makefile.inc lib/nbsd_libc/net/Makefile.inc
+--- nbsdsrc/src/lib/libc/net/Makefile.inc	Fri Oct  2 02:45:29 2009
++++ lib/nbsd_libc/net/Makefile.inc	Fri Apr 29 11:53:02 2011
+@@ -2,18 +2,33 @@
  #	@(#)Makefile.inc	8.2 (Berkeley) 9/5/93
  
  # net sources
@@ -1576,19 +1576,22 @@ diff -ru /home/netbsd/src/lib/libc/net/Makefile.inc ./net/Makefile.inc
  
 +.if defined(__MINIX)
 +# Not supported by minix: iso_addr.c link_addr.c sockatmark.c
+ SRCS+=	__cmsg_alignbytes.c base64.c ethers.c gethnamaddr.c getifaddrs.c \
+ 	getnetnamadr.c getnetent.c getpeereid.c \
+ 	getprotobyname.c getprotobynumber.c getprotoent.c \
+ 	getprotobyname_r.c getprotobynumber_r.c getprotoent_r.c \
+ 	getservbyname.c getservbyport.c getservent.c \
+ 	getservbyname_r.c getservbyport_r.c getservent_r.c \
++	nsdispatch.c nslexer.l nsparser.y nsap_addr.c \
++	rcmd.c recv.c send.c sethostent.c 
++.else
 +SRCS+=	__cmsg_alignbytes.c base64.c ethers.c gethnamaddr.c getifaddrs.c \
 +	getnetnamadr.c getnetent.c getpeereid.c \
 +	getprotobyname.c getprotobynumber.c getprotoent.c \
 +	getprotobyname_r.c getprotobynumber_r.c getprotoent_r.c \
 +	getservbyname.c getservbyport.c getservent.c \
 +	getservbyname_r.c getservbyport_r.c getservent_r.c \
-+	nsdispatch.c nslexer.l nsparser.y nsap_addr.c \
-+	rcmd.c recv.c send.c sethostent.c 
-+.else
- SRCS+=	__cmsg_alignbytes.c base64.c ethers.c gethnamaddr.c getifaddrs.c \
- 	getnetnamadr.c getnetent.c getpeereid.c \
- 	getprotobyname.c getprotobynumber.c getprotoent.c \
-@@ -14,6 +28,7 @@
+ 	iso_addr.c linkaddr.c \
  	nsdispatch.c nslexer.l nsparser.y nsap_addr.c \
  	rcmd.c recv.c send.c sethostent.c \
  	sockatmark.c
@@ -1606,9 +1609,9 @@ diff -ru /home/netbsd/src/lib/libc/net/Makefile.inc ./net/Makefile.inc
  
  LPREFIX=_nsyy
  YPREFIX=_nsyy
-diff -ru /home/netbsd/src/lib/libc/net/getaddrinfo.c ./net/getaddrinfo.c
---- /home/netbsd/src/lib/libc/net/getaddrinfo.c	2009-10-02 07:41:08.000000000 +0000
-+++ ./net/getaddrinfo.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/net/getaddrinfo.c lib/nbsd_libc/net/getaddrinfo.c
+--- nbsdsrc/src/lib/libc/net/getaddrinfo.c	Fri Oct  2 07:41:08 2009
++++ lib/nbsd_libc/net/getaddrinfo.c	Fri Apr 29 11:53:02 2011
 @@ -855,7 +855,12 @@
  	ai = calloc(sizeof(struct addrinfo) + addrlen, 1);
  	if (ai) {
@@ -1622,9 +1625,9 @@ diff -ru /home/netbsd/src/lib/libc/net/getaddrinfo.c ./net/getaddrinfo.c
  	}
  
  	return ai;
-diff -ru /home/netbsd/src/lib/libc/net/getnameinfo.c ./net/getnameinfo.c
---- /home/netbsd/src/lib/libc/net/getnameinfo.c	2010-06-30 03:52:09.000000000 +0000
-+++ ./net/getnameinfo.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/net/getnameinfo.c lib/nbsd_libc/net/getnameinfo.c
+--- nbsdsrc/src/lib/libc/net/getnameinfo.c	Tue Jun 29 14:44:19 2010
++++ lib/nbsd_libc/net/getnameinfo.c	Fri Apr 29 11:53:02 2011
 @@ -54,10 +54,12 @@
  #include <sys/types.h>
  #include <sys/socket.h>
@@ -1703,9 +1706,9 @@ diff -ru /home/netbsd/src/lib/libc/net/getnameinfo.c ./net/getnameinfo.c
  
  static int
  hexname(cp, len, host, hostlen)
-diff -ru /home/netbsd/src/lib/libc/net/rcmd.c ./net/rcmd.c
---- /home/netbsd/src/lib/libc/net/rcmd.c	2007-01-03 11:46:22.000000000 +0000
-+++ ./net/rcmd.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/net/rcmd.c lib/nbsd_libc/net/rcmd.c
+--- nbsdsrc/src/lib/libc/net/rcmd.c	Wed Jan  3 11:46:22 2007
++++ lib/nbsd_libc/net/rcmd.c	Fri Apr 29 11:53:02 2011
 @@ -48,7 +48,9 @@
  #include <sys/wait.h>
  
@@ -1790,9 +1793,9 @@ diff -ru /home/netbsd/src/lib/libc/net/rcmd.c ./net/rcmd.c
  	return (-1);
  }
  
-diff -ru /home/netbsd/src/lib/libc/net/send.c ./net/send.c
---- /home/netbsd/src/lib/libc/net/send.c	2003-08-07 16:43:15.000000000 +0000
-+++ ./net/send.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/net/send.c lib/nbsd_libc/net/send.c
+--- nbsdsrc/src/lib/libc/net/send.c	Thu Aug  7 16:43:15 2003
++++ lib/nbsd_libc/net/send.c	Fri Apr 29 11:53:02 2011
 @@ -44,9 +44,15 @@
  
  #include <stddef.h>
@@ -1809,9 +1812,9 @@ diff -ru /home/netbsd/src/lib/libc/net/send.c ./net/send.c
  
  ssize_t
  send(s, msg, len, flags)
-diff -ru /home/netbsd/src/lib/libc/nls/catopen.c ./nls/catopen.c
---- /home/netbsd/src/lib/libc/nls/catopen.c	2009-03-10 13:15:40.000000000 +0000
-+++ ./nls/catopen.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/nls/catopen.c lib/nbsd_libc/nls/catopen.c
+--- nbsdsrc/src/lib/libc/nls/catopen.c	Tue Mar 10 13:15:40 2009
++++ lib/nbsd_libc/nls/catopen.c	Fri Apr 29 11:53:02 2011
 @@ -169,6 +169,19 @@
  		return (nl_catd)-1;
  	}
@@ -1840,9 +1843,9 @@ diff -ru /home/netbsd/src/lib/libc/nls/catopen.c ./nls/catopen.c
  
  	if (ntohl((u_int32_t)((struct _nls_cat_hdr *)data)->__magic) !=
  	    _NLS_MAGIC) {
-diff -ru /home/netbsd/src/lib/libc/resolv/Makefile.inc ./resolv/Makefile.inc
---- /home/netbsd/src/lib/libc/resolv/Makefile.inc	2007-01-28 02:14:05.000000000 +0000
-+++ ./resolv/Makefile.inc	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/resolv/Makefile.inc lib/nbsd_libc/resolv/Makefile.inc
+--- nbsdsrc/src/lib/libc/resolv/Makefile.inc	Sun Jan 28 02:14:05 2007
++++ lib/nbsd_libc/resolv/Makefile.inc	Fri Apr 29 11:53:02 2011
 @@ -2,7 +2,11 @@
  
  # net sources
@@ -1855,9 +1858,9 @@ diff -ru /home/netbsd/src/lib/libc/resolv/Makefile.inc ./resolv/Makefile.inc
  
  SRCS+=	__dn_comp.c __res_close.c __res_send.c h_errno.c \
  	herror.c res_comp.c res_data.c res_debug.c \
-diff -ru /home/netbsd/src/lib/libc/resolv/res_comp.c ./resolv/res_comp.c
---- /home/netbsd/src/lib/libc/resolv/res_comp.c	2009-04-12 17:07:17.000000000 +0000
-+++ ./resolv/res_comp.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/resolv/res_comp.c lib/nbsd_libc/resolv/res_comp.c
+--- nbsdsrc/src/lib/libc/resolv/res_comp.c	Sun Apr 12 17:07:17 2009
++++ lib/nbsd_libc/resolv/res_comp.c	Fri Apr 29 11:53:02 2011
 @@ -96,7 +96,7 @@
  #ifdef __weak_alias
  __weak_alias(dn_expand,_dn_expand)
@@ -1867,9 +1870,9 @@ diff -ru /home/netbsd/src/lib/libc/resolv/res_comp.c ./resolv/res_comp.c
  __weak_alias(dn_skipname,__dn_skipname)
  __weak_alias(res_hnok,__res_hnok)
  __weak_alias(res_ownok,__res_ownok)
-diff -ru /home/netbsd/src/lib/libc/resolv/res_init.c ./resolv/res_init.c
---- /home/netbsd/src/lib/libc/resolv/res_init.c	2009-10-24 17:24:01.000000000 +0000
-+++ ./resolv/res_init.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/resolv/res_init.c lib/nbsd_libc/resolv/res_init.c
+--- nbsdsrc/src/lib/libc/resolv/res_init.c	Sat Oct 24 17:24:01 2009
++++ lib/nbsd_libc/resolv/res_init.c	Fri Apr 29 11:53:02 2011
 @@ -70,6 +70,10 @@
   * OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
   */
@@ -1919,19 +1922,20 @@ diff -ru /home/netbsd/src/lib/libc/resolv/res_init.c ./resolv/res_init.c
  	} else {
  	    statp->_u._ext.ext->kq = -1;
  	    statp->_u._ext.ext->resfd = -1;
-@@ -565,6 +577,12 @@
+@@ -565,7 +577,13 @@
  int
  res_check(res_state statp, struct timespec *mtime)
  {
 +#ifdef __minix
-+	/*
+ 	/*
 +	 * XXX: No update on change.
 +	 */
 +	return 0;
 +#else /* !__minix */
- 	/*
++	/*
  	 * If the times are equal, then we check if there
  	 * was a kevent related to resolv.conf and reload.
+ 	 * If the times are not equal, then we don't bother
 @@ -593,6 +611,7 @@
  	if (mtime)
  		*mtime = __res_conf_time;
@@ -1940,9 +1944,9 @@ diff -ru /home/netbsd/src/lib/libc/resolv/res_init.c ./resolv/res_init.c
  }
  
  static void
-diff -ru /home/netbsd/src/lib/libc/stdio/fseeko.c ./stdio/fseeko.c
---- /home/netbsd/src/lib/libc/stdio/fseeko.c	2009-01-31 00:08:05.000000000 +0000
-+++ ./stdio/fseeko.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/stdio/fseeko.c lib/nbsd_libc/stdio/fseeko.c
+--- nbsdsrc/src/lib/libc/stdio/fseeko.c	Sat Jan 31 00:08:05 2009
++++ lib/nbsd_libc/stdio/fseeko.c	Fri Apr 29 11:53:02 2011
 @@ -150,7 +150,11 @@
  			fp->_flags |= __SNPT;
  			goto dumb;
@@ -1955,9 +1959,9 @@ diff -ru /home/netbsd/src/lib/libc/stdio/fseeko.c ./stdio/fseeko.c
  		fp->_flags |= __SOPT;
  	}
  
-diff -ru /home/netbsd/src/lib/libc/stdio/makebuf.c ./stdio/makebuf.c
---- /home/netbsd/src/lib/libc/stdio/makebuf.c	2008-03-13 15:40:00.000000000 +0000
-+++ ./stdio/makebuf.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/stdio/makebuf.c lib/nbsd_libc/stdio/makebuf.c
+--- nbsdsrc/src/lib/libc/stdio/makebuf.c	Thu Mar 13 15:40:00 2008
++++ lib/nbsd_libc/stdio/makebuf.c	Fri Apr 29 11:53:02 2011
 @@ -114,18 +114,25 @@
  
  	/* could be a tty iff it is a character device */
@@ -1984,21 +1988,21 @@ diff -ru /home/netbsd/src/lib/libc/stdio/makebuf.c ./stdio/makebuf.c
  	return ((st.st_mode & S_IFMT) == S_IFREG && fp->_seek == __sseek ?
  	    __SOPT : __SNPT);
  }
-diff -ru /home/netbsd/src/lib/libc/stdlib/Makefile.inc ./stdlib/Makefile.inc
---- /home/netbsd/src/lib/libc/stdlib/Makefile.inc	2010-11-15 03:02:00.000000000 +0000
-+++ ./stdlib/Makefile.inc	2011-04-29 11:53:02.000000000 +0000
-@@ -4,6 +4,21 @@
+diff -ru nbsdsrc/src/lib/libc/stdlib/Makefile.inc lib/nbsd_libc/stdlib/Makefile.inc
+--- nbsdsrc/src/lib/libc/stdlib/Makefile.inc	Sun Nov 14 18:11:43 2010
++++ lib/nbsd_libc/stdlib/Makefile.inc	Fri Apr 29 11:53:02 2011
+@@ -4,18 +4,34 @@
  # stdlib sources
  .PATH: ${ARCHDIR}/stdlib ${.CURDIR}/stdlib
  
 +.if defined(__MINIX)
 +# pty.c not compiled
-+SRCS+=	_env.c _rand48.c \
-+	a64l.c abort.c atexit.c atof.c atoi.c atol.c atoll.c \
-+	bsearch.c drand48.c exit.c \
-+	getenv.c getopt.c getopt_long.c getsubopt.c \
-+	hcreate.c heapsort.c imaxdiv.c insque.c jrand48.c l64a.c lldiv.c \
-+	lcong48.c lrand48.c lsearch.c merge.c mi_vector_hash.c mrand48.c \
+ SRCS+=	_env.c _rand48.c \
+ 	a64l.c abort.c atexit.c atof.c atoi.c atol.c atoll.c \
+ 	bsearch.c drand48.c exit.c \
+ 	getenv.c getopt.c getopt_long.c getsubopt.c \
+ 	hcreate.c heapsort.c imaxdiv.c insque.c jrand48.c l64a.c lldiv.c \
+ 	lcong48.c lrand48.c lsearch.c merge.c mi_vector_hash.c mrand48.c \
 +	nrand48.c putenv.c qabs.c qdiv.c qsort.c posix_openpt.c \
 +	radixsort.c rand.c rand_r.c random.c remque.c \
 +	seed48.c setenv.c srand48.c strsuftoll.c \
@@ -2006,10 +2010,15 @@ diff -ru /home/netbsd/src/lib/libc/stdlib/Makefile.inc ./stdlib/Makefile.inc
 +	strtoumax.c strtouq.c system.c tdelete.c tfind.c tsearch.c twalk.c \
 +	unsetenv.c strfmon.c
 +.else
- SRCS+=	_env.c _rand48.c \
- 	a64l.c abort.c atexit.c atof.c atoi.c atol.c atoll.c \
- 	bsearch.c drand48.c exit.c \
-@@ -16,6 +31,7 @@
++SRCS+=	_env.c _rand48.c \
++	a64l.c abort.c atexit.c atof.c atoi.c atol.c atoll.c \
++	bsearch.c drand48.c exit.c \
++	getenv.c getopt.c getopt_long.c getsubopt.c \
++	hcreate.c heapsort.c imaxdiv.c insque.c jrand48.c l64a.c lldiv.c \
++	lcong48.c lrand48.c lsearch.c merge.c mi_vector_hash.c mrand48.c \
+ 	nrand48.c putenv.c qabs.c qdiv.c qsort.c posix_openpt.c pty.c \
+ 	radixsort.c rand.c rand_r.c random.c remque.c \
+ 	seed48.c setenv.c srand48.c strsuftoll.c \
  	strtoimax.c strtol.c strtoll.c strtoq.c strtoul.c strtoull.c \
  	strtoumax.c strtouq.c system.c tdelete.c tfind.c tsearch.c twalk.c \
  	unsetenv.c strfmon.c
@@ -2017,9 +2026,9 @@ diff -ru /home/netbsd/src/lib/libc/stdlib/Makefile.inc ./stdlib/Makefile.inc
  
  # These are often replaced by MD .S versions
  SRCS+=	abs.c labs.c llabs.c imaxabs.c
-diff -ru /home/netbsd/src/lib/libc/stdlib/atexit.c ./stdlib/atexit.c
---- /home/netbsd/src/lib/libc/stdlib/atexit.c	2009-10-08 16:33:45.000000000 +0000
-+++ ./stdlib/atexit.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/stdlib/atexit.c lib/nbsd_libc/stdlib/atexit.c
+--- nbsdsrc/src/lib/libc/stdlib/atexit.c	Thu Oct  8 16:33:45 2009
++++ lib/nbsd_libc/stdlib/atexit.c	Fri Apr 29 11:53:02 2011
 @@ -120,10 +120,12 @@
  void
  __libc_atexit_init(void)
@@ -2033,9 +2042,9 @@ diff -ru /home/netbsd/src/lib/libc/stdlib/atexit.c ./stdlib/atexit.c
  }
  
  /*
-diff -ru /home/netbsd/src/lib/libc/stdlib/malloc.c ./stdlib/malloc.c
---- /home/netbsd/src/lib/libc/stdlib/malloc.c	2008-02-03 22:56:53.000000000 +0000
-+++ ./stdlib/malloc.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/stdlib/malloc.c lib/nbsd_libc/stdlib/malloc.c
+--- nbsdsrc/src/lib/libc/stdlib/malloc.c	Sun Feb  3 22:56:53 2008
++++ lib/nbsd_libc/stdlib/malloc.c	Fri Apr 29 11:53:02 2011
 @@ -65,8 +65,10 @@
  #       define malloc_pageshift         12U
  #       define malloc_minsize           16U
@@ -2081,9 +2090,9 @@ diff -ru /home/netbsd/src/lib/libc/stdlib/malloc.c ./stdlib/malloc.c
  
      tail = (char *)ptr+l;
  
-diff -ru /home/netbsd/src/lib/libc/stdlib/system.c ./stdlib/system.c
---- /home/netbsd/src/lib/libc/stdlib/system.c	2010-11-15 03:02:00.000000000 +0000
-+++ ./stdlib/system.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/stdlib/system.c lib/nbsd_libc/stdlib/system.c
+--- nbsdsrc/src/lib/libc/stdlib/system.c	Sun Nov 14 18:11:43 2010
++++ lib/nbsd_libc/stdlib/system.c	Fri Apr 29 11:53:02 2011
 @@ -91,7 +91,11 @@
  	}
  
@@ -2096,21 +2105,21 @@ diff -ru /home/netbsd/src/lib/libc/stdlib/system.c ./stdlib/system.c
  	case -1:			/* error */
  		(void)__unlockenv();
  		sigaction(SIGINT, &intsa, NULL);
-diff -ru /home/netbsd/src/lib/libc/termios/Makefile.inc ./termios/Makefile.inc
---- /home/netbsd/src/lib/libc/termios/Makefile.inc	1998-02-14 20:20:44.000000000 +0000
-+++ ./termios/Makefile.inc	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/termios/Makefile.inc lib/nbsd_libc/termios/Makefile.inc
+--- nbsdsrc/src/lib/libc/termios/Makefile.inc	Sat Feb 14 20:20:44 1998
++++ lib/nbsd_libc/termios/Makefile.inc	Fri Apr 29 11:53:02 2011
 @@ -2,9 +2,18 @@
  
  .PATH:	${.CURDIR}/termios
  
 +.if defined(__MINIX)
 +# Not supported by Minix: tcgetsid.c
-+SRCS+=	cfgetispeed.c cfgetospeed.c cfmakeraw.c cfsetispeed.c cfsetospeed.c \
-+	cfsetspeed.c tcdrain.c tcflow.c tcflush.c tcgetattr.c tcgetpgrp.c \
-+	tcsendbreak.c tcsetattr.c tcsetpgrp.c
-+.else
  SRCS+=	cfgetispeed.c cfgetospeed.c cfmakeraw.c cfsetispeed.c cfsetospeed.c \
  	cfsetspeed.c tcdrain.c tcflow.c tcflush.c tcgetattr.c tcgetpgrp.c \
++	tcsendbreak.c tcsetattr.c tcsetpgrp.c
++.else
++SRCS+=	cfgetispeed.c cfgetospeed.c cfmakeraw.c cfsetispeed.c cfsetospeed.c \
++	cfsetspeed.c tcdrain.c tcflow.c tcflush.c tcgetattr.c tcgetpgrp.c \
  	tcgetsid.c tcsendbreak.c tcsetattr.c tcsetpgrp.c
 +.endif
 +
@@ -2118,9 +2127,9 @@ diff -ru /home/netbsd/src/lib/libc/termios/Makefile.inc ./termios/Makefile.inc
  
  MAN+=	tcgetpgrp.3 tcgetsid.3 tcsendbreak.3 tcsetattr.3 tcsetpgrp.3
  
-diff -ru /home/netbsd/src/lib/libc/termios/cfmakeraw.c ./termios/cfmakeraw.c
---- /home/netbsd/src/lib/libc/termios/cfmakeraw.c	2003-08-07 16:44:12.000000000 +0000
-+++ ./termios/cfmakeraw.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/termios/cfmakeraw.c lib/nbsd_libc/termios/cfmakeraw.c
+--- nbsdsrc/src/lib/libc/termios/cfmakeraw.c	Thu Aug  7 16:44:12 2003
++++ lib/nbsd_libc/termios/cfmakeraw.c	Fri Apr 29 11:53:02 2011
 @@ -59,7 +59,11 @@
  
  	_DIAGASSERT(t != NULL);
@@ -2133,9 +2142,9 @@ diff -ru /home/netbsd/src/lib/libc/termios/cfmakeraw.c ./termios/cfmakeraw.c
  	t->c_oflag &= ~OPOST;
  	t->c_lflag &= ~(ECHO|ECHONL|ICANON|ISIG|IEXTEN);
  	t->c_cflag &= ~(CSIZE|PARENB);
-diff -ru /home/netbsd/src/lib/libc/termios/tcflow.c ./termios/tcflow.c
---- /home/netbsd/src/lib/libc/termios/tcflow.c	2003-08-07 16:44:13.000000000 +0000
-+++ ./termios/tcflow.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/termios/tcflow.c lib/nbsd_libc/termios/tcflow.c
+--- nbsdsrc/src/lib/libc/termios/tcflow.c	Thu Aug  7 16:44:13 2003
++++ lib/nbsd_libc/termios/tcflow.c	Fri Apr 29 11:53:02 2011
 @@ -54,6 +54,10 @@
  tcflow(fd, action)
  	int fd, action;
@@ -2153,9 +2162,9 @@ diff -ru /home/netbsd/src/lib/libc/termios/tcflow.c ./termios/tcflow.c
  	/* NOTREACHED */
 +#endif /* !__minix */
  }
-diff -ru /home/netbsd/src/lib/libc/termios/tcflush.c ./termios/tcflush.c
---- /home/netbsd/src/lib/libc/termios/tcflush.c	2003-08-07 16:44:13.000000000 +0000
-+++ ./termios/tcflush.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/termios/tcflush.c lib/nbsd_libc/termios/tcflush.c
+--- nbsdsrc/src/lib/libc/termios/tcflush.c	Thu Aug  7 16:44:13 2003
++++ lib/nbsd_libc/termios/tcflush.c	Fri Apr 29 11:53:02 2011
 @@ -54,6 +54,10 @@
  tcflush(fd, which)
  	int fd, which;
@@ -2173,9 +2182,9 @@ diff -ru /home/netbsd/src/lib/libc/termios/tcflush.c ./termios/tcflush.c
  	return (ioctl(fd, TIOCFLUSH, &com));
 +#endif /* !__minix */
  }
-diff -ru /home/netbsd/src/lib/libc/termios/tcsendbreak.c ./termios/tcsendbreak.c
---- /home/netbsd/src/lib/libc/termios/tcsendbreak.c	2003-08-07 16:44:14.000000000 +0000
-+++ ./termios/tcsendbreak.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/termios/tcsendbreak.c lib/nbsd_libc/termios/tcsendbreak.c
+--- nbsdsrc/src/lib/libc/termios/tcsendbreak.c	Thu Aug  7 16:44:14 2003
++++ lib/nbsd_libc/termios/tcsendbreak.c	Fri Apr 29 11:53:02 2011
 @@ -41,7 +41,9 @@
  #include "namespace.h"
  #include <sys/types.h>
@@ -2203,9 +2212,9 @@ diff -ru /home/netbsd/src/lib/libc/termios/tcsendbreak.c ./termios/tcsendbreak.c
  	return (0);
 +#endif /* !__minix */
  }
-diff -ru /home/netbsd/src/lib/libc/termios/tcsetattr.c ./termios/tcsetattr.c
---- /home/netbsd/src/lib/libc/termios/tcsetattr.c	2003-08-07 16:44:14.000000000 +0000
-+++ ./termios/tcsetattr.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/termios/tcsetattr.c lib/nbsd_libc/termios/tcsetattr.c
+--- nbsdsrc/src/lib/libc/termios/tcsetattr.c	Thu Aug  7 16:44:14 2003
++++ lib/nbsd_libc/termios/tcsetattr.c	Fri Apr 29 11:53:02 2011
 @@ -60,11 +60,15 @@
  	_DIAGASSERT(fd != -1);
  	_DIAGASSERT(t != NULL);
@@ -2222,9 +2231,9 @@ diff -ru /home/netbsd/src/lib/libc/termios/tcsetattr.c ./termios/tcsetattr.c
  	switch (opt & ~TCSASOFT) {
  	case TCSANOW:
  		return (ioctl(fd, TIOCSETA, t));
-diff -ru /home/netbsd/src/lib/libc/time/strftime.c ./time/strftime.c
---- /home/netbsd/src/lib/libc/time/strftime.c	2010-12-17 03:01:55.000000000 +0000
-+++ ./time/strftime.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/time/strftime.c lib/nbsd_libc/time/strftime.c
+--- nbsdsrc/src/lib/libc/time/strftime.c	Thu Dec 16 18:38:07 2010
++++ lib/nbsd_libc/time/strftime.c	Fri Apr 29 11:53:02 2011
 @@ -553,6 +553,11 @@
  				pt = _conv(diff, "%04d", pt, ptlim);
  				}
@@ -2237,9 +2246,9 @@ diff -ru /home/netbsd/src/lib/libc/time/strftime.c ./time/strftime.c
  #if 0
  			case '+':
  				pt = _fmt(sp, Locale->date_fmt, t, pt, ptlim,
-diff -ru /home/netbsd/src/lib/libc/yp/yplib.c ./yp/yplib.c
---- /home/netbsd/src/lib/libc/yp/yplib.c	2006-11-03 20:18:49.000000000 +0000
-+++ ./yp/yplib.c	2011-04-29 11:53:02.000000000 +0000
+diff -ru nbsdsrc/src/lib/libc/yp/yplib.c lib/nbsd_libc/yp/yplib.c
+--- nbsdsrc/src/lib/libc/yp/yplib.c	Fri Nov  3 20:18:49 2006
++++ lib/nbsd_libc/yp/yplib.c	Fri Apr 29 11:53:02 2011
 @@ -172,8 +172,10 @@
  			}
  			(void)memset(&ysd->dom_server_addr, 0,

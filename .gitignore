@@ -13,6 +13,7 @@ cscope.*
 *.a
 *.d
 .depend
+nbsdsrc/*
 obj-ack
 obj-gnu
 obj-elf-base
