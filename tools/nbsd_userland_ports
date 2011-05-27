@@ -1,0 +1,3 @@
+nbsd_usr.bin/mkdep  src/usr.bin/mkdep
+nbsd_usr.bin/uniq   src/usr.bin/uniq
+nbsd_usr.bin/m4     src/usr.bin/m4

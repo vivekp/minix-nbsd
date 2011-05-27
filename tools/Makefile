@@ -37,6 +37,7 @@ usage:
 	@echo "	make fdboot     # Make image, and install to floppy disk" >&2
 	@echo "	make bootable   # Make hard disk bootable" >&2
 	@echo "	make nbsd_fetch	# Download current NetBSD reference sources" >&2
+	@echo " make nbsd_userland_fetch # Download current NetBSD userland reference sources" >&2
 	@echo "	make nbsd_diff	# Update minix-port.patch in NetBSD sources" >&2
 	@echo "	make clean      # Remove all compiler results, except libs" >&2
 	@echo " " >&2
@@ -113,6 +114,10 @@ nbsd_diff:
 	cd ${MINIXSRCDIR} && awk '{ system("sh tools/nbsd_diff.sh " \
 	   "nbsdsrc/"$$2" "$$1" "$$1"/minix-port.patch");}' < tools/nbsd_ports
 
+# download and update NetBSD userland reference source.
+nbsd_userland_fetch:
+	cd ${MINIXSRCDIR} && awk '{print $$2;}' < tools/nbsd_userland_ports \
+		| xargs -t cvs -d ${NBSD_CVSROOT} co -N -d nbsdsrc ${NBSD_REF}
 
 # clean up compile results
 clean:
