@@ -1,3 +1,11 @@
-nbsd_usr.bin/mkdep  src/usr.bin/mkdep
-nbsd_usr.bin/uniq   src/usr.bin/uniq
-nbsd_usr.bin/m4     src/usr.bin/m4
+nbsd_bin/kill		src/bin/kill
+nbsd_usr.bin/printf	src/usr.bin/printf
+nbsd_bin/test		src/bin/test
+lib/nbsd_libedit	src/lib/libedit
+nbsd_usr.bin/stat	src/usr.bin/stat
+lib/nbsd_libterminfo 	src/lib/libterminfo
+nbsd_bin/sh    		src/bin/sh
+nbsd_usr.bin/indent 	src/usr.bin/indent
+nbsd_usr.bin/mkdep  	src/usr.bin/mkdep
+nbsd_usr.bin/m4     	src/usr.bin/m4
+nbsd_usr.bin/uniq   	src/usr.bin/uniq
