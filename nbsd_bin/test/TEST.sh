@@ -2,7 +2,10 @@
 #	@(#)TEST.csh	5.2 (Berkeley) 4/30/93
 
 #alias t '/usr/src/bin/test/obj/test \!*; echo $status'
-alias t '/bin/test \!*; echo $status'
+#alias t '/bin/test \!*; echo $status'
+
+echo 't = /bin/test' 
+alias t='/bin/test'
 
 echo 't -b /dev/ttyp2'
 t -b /dev/ttyp2
