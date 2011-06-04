@@ -57,7 +57,11 @@ CPPFLAGS+=-DWIDECHAR
 LIBEDITDIR?=${.CURDIR}
 
 INCS= histedit.h
+.if defined(__MINIX)
+INCSDIR=/usr/netbsd/include
+.else 
 INCSDIR=/usr/include
+.endif
 
 CLEANFILES+=editline.c
 CLEANFILES+=common.h.tmp editline.c.tmp emacs.h.tmp fcns.c.tmp fcns.h.tmp

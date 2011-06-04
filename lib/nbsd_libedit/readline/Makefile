@@ -11,7 +11,12 @@ NOOBJ=		# defined
 .endif
 
 INCS=		readline.h
+
+.if defined(__MINIX)
+INCSDIR=/usr/netbsd/include/readline
+.else
 INCSDIR=	/usr/include/readline
+.endif
 INCSYMLINKS=	readline.h ${INCSDIR}/history.h
 
 .include <bsd.prog.mk>
