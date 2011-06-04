@@ -1,0 +1,193 @@
+     create  netstat/.depend
+cat: tp_astring.d: No such file or directory
+*** Error code 1
+
+Stop.
+make: stopped in /usr/minix/nbsd_usr.bin/netstat
+     create  netstat/atalk.d
+atalk.c:44:27: error: sys/socketvar.h: No such file or directory
+atalk.c:45:22: error: sys/mbuf.h: No such file or directory
+atalk.c:46:25: error: sys/protosw.h: No such file or directory
+In file included from atalk.c:47:
+/usr/netbsd/include/sys/sysctl.h:8:2: warning: #warning Including sysctl.h header. sysctl() is not supported in Minix.
+atalk.c:49:23: error: net/route.h: No such file or directory
+atalk.c:52:29: error: netinet/tcp_fsm.h: No such file or directory
+atalk.c:54:25: error: netatalk/at.h: No such file or directory
+atalk.c:55:30: error: netatalk/ddp_var.h: No such file or directory
+atalk.c:59:17: error: kvm.h: No such file or directory
+     create  netstat/bpf.d
+bpf.c:35:17: error: kvm.h: No such file or directory
+In file included from bpf.c:43:
+/usr/netbsd/include/sys/sysctl.h:8:2: warning: #warning Including sysctl.h header. sysctl() is not supported in Minix.
+bpf.c:44:25: error: net/bpfdesc.h: No such file or directory
+bpf.c:45:21: error: net/bpf.h: No such file or directory
+     create  netstat/fast_ipsec.d
+In file included from fast_ipsec.c:46:
+/usr/netbsd/include/sys/sysctl.h:8:2: warning: #warning Including sysctl.h header. sysctl() is not supported in Minix.
+fast_ipsec.c:49:25: error: net/pfkeyv2.h: No such file or directory
+fast_ipsec.c:50:30: error: netipsec/esp_var.h: No such file or directory
+fast_ipsec.c:51:29: error: netipsec/ah_var.h: No such file or directory
+fast_ipsec.c:52:31: error: netipsec/ipip_var.h: No such file or directory
+fast_ipsec.c:53:33: error: netipsec/ipcomp_var.h: No such file or directory
+fast_ipsec.c:54:32: error: netipsec/ipsec_var.h: No such file or directory
+fast_ipsec.c:55:28: error: netipsec/keydb.h: No such file or directory
+fast_ipsec.c:59:17: error: kvm.h: No such file or directory
+     create  netstat/if.d
+if.c:43:25: error: sys/protosw.h: No such file or directory
+In file included from if.c:46:
+/usr/netbsd/include/sys/sysctl.h:8:2: warning: #warning Including sysctl.h header. sysctl() is not supported in Minix.
+if.c:49:23: error: net/if_dl.h: No such file or directory
+if.c:50:26: error: net/if_types.h: No such file or directory
+if.c:51:23: error: net/route.h: No such file or directory
+if.c:53:28: error: netinet/in_var.h: No such file or directory
+if.c:54:24: error: netiso/iso.h: No such file or directory
+if.c:55:28: error: netiso/iso_var.h: No such file or directory
+if.c:58:17: error: kvm.h: No such file or directory
+     create  netstat/inet.d
+inet.c:46:27: error: sys/socketvar.h: No such file or directory
+inet.c:47:22: error: sys/mbuf.h: No such file or directory
+inet.c:48:25: error: sys/protosw.h: No such file or directory
+In file included from inet.c:49:
+/usr/netbsd/include/sys/sysctl.h:8:2: warning: #warning Including sysctl.h header. sysctl() is not supported in Minix.
+inet.c:51:24: error: net/if_arp.h: No such file or directory
+inet.c:52:23: error: net/route.h: No such file or directory
+inet.c:54:30: error: netinet/in_systm.h: No such file or directory
+inet.c:55:24: error: netinet/ip.h: No such file or directory
+inet.c:56:28: error: netinet/in_pcb.h: No such file or directory
+inet.c:57:29: error: netinet/ip_icmp.h: No such file or directory
+inet.c:63:30: error: netinet/icmp_var.h: No such file or directory
+inet.c:64:30: error: netinet/igmp_var.h: No such file or directory
+inet.c:65:28: error: netinet/ip_var.h: No such file or directory
+inet.c:66:29: error: netinet/pim_var.h: No such file or directory
+inet.c:68:27: error: netinet/tcpip.h: No such file or directory
+inet.c:69:29: error: netinet/tcp_seq.h: No such file or directory
+inet.c:71:29: error: netinet/tcp_fsm.h: No such file or directory
+inet.c:73:31: error: netinet/tcp_timer.h: No such file or directory
+inet.c:74:29: error: netinet/tcp_var.h: No such file or directory
+inet.c:75:31: error: netinet/tcp_debug.h: No such file or directory
+inet.c:76:25: error: netinet/udp.h: No such file or directory
+inet.c:77:29: error: netinet/ip_carp.h: No such file or directory
+inet.c:78:29: error: netinet/udp_var.h: No such file or directory
+inet.c:79:23: error: net/pfvar.h: No such file or directory
+inet.c:80:27: error: net/if_pfsync.h: No such file or directory
+inet.c:83:17: error: kvm.h: No such file or directory
+     create  netstat/inet6.d
+inet6.c:73:27: error: sys/socketvar.h: No such file or directory
+inet6.c:75:22: error: sys/mbuf.h: No such file or directory
+inet6.c:76:25: error: sys/protosw.h: No such file or directory
+In file included from inet6.c:77:
+/usr/netbsd/include/sys/sysctl.h:8:2: warning: #warning Including sysctl.h header. sysctl() is not supported in Minix.
+inet6.c:79:23: error: net/route.h: No such file or directory
+inet6.c:82:25: error: netinet/ip6.h: No such file or directory
+inet6.c:83:27: error: netinet/icmp6.h: No such file or directory
+inet6.c:84:30: error: netinet/in_systm.h: No such file or directory
+inet6.c:86:24: error: netinet/ip.h: No such file or directory
+inet6.c:87:28: error: netinet/ip_var.h: No such file or directory
+inet6.c:89:30: error: netinet6/ip6_var.h: No such file or directory
+inet6.c:90:30: error: netinet6/in6_pcb.h: No such file or directory
+inet6.c:91:30: error: netinet6/in6_var.h: No such file or directory
+inet6.c:103:27: error: netinet/tcpip.h: No such file or directory
+inet6.c:104:29: error: netinet/tcp_seq.h: No such file or directory
+inet6.c:106:29: error: netinet/tcp_fsm.h: No such file or directory
+inet6.c:109:31: error: netinet/tcp_timer.h: No such file or directory
+inet6.c:110:29: error: netinet/tcp_var.h: No such file or directory
+inet6.c:111:31: error: netinet/tcp_debug.h: No such file or directory
+inet6.c:113:27: error: netinet6/udp6.h: No such file or directory
+inet6.c:114:31: error: netinet6/udp6_var.h: No such file or directory
+inet6.c:115:31: error: netinet6/pim6_var.h: No such file or directory
+inet6.c:116:30: error: netinet6/raw_ip6.h: No such file or directory
+inet6.c:126:17: error: kvm.h: No such file or directory
+     create  netstat/ipsec.d
+In file included from ipsec.c:76:
+/usr/netbsd/include/sys/sysctl.h:8:2: warning: #warning Including sysctl.h header. sysctl() is not supported in Minix.
+ipsec.c:81:28: error: netinet6/ipsec.h: No such file or directory
+ipsec.c:82:28: error: netkey/keysock.h: No such file or directory
+ipsec.c:86:17: error: kvm.h: No such file or directory
+     create  netstat/iso.d
+iso.c:70:22: error: sys/mbuf.h: No such file or directory
+iso.c:72:24: error: sys/domain.h: No such file or directory
+iso.c:73:25: error: sys/protosw.h: No such file or directory
+iso.c:75:27: error: sys/socketvar.h: No such file or directory
+iso.c:78:23: error: net/route.h: No such file or directory
+iso.c:80:30: error: netinet/in_systm.h: No such file or directory
+iso.c:81:24: error: netinet/ip.h: No such file or directory
+iso.c:82:28: error: netinet/in_pcb.h: No such file or directory
+iso.c:83:28: error: netinet/ip_var.h: No such file or directory
+iso.c:84:24: error: netiso/iso.h: No such file or directory
+iso.c:85:30: error: netiso/iso_errno.h: No such file or directory
+iso.c:86:25: error: netiso/clnp.h: No such file or directory
+iso.c:87:25: error: netiso/esis.h: No such file or directory
+iso.c:88:30: error: netiso/clnp_stat.h: No such file or directory
+iso.c:89:31: error: netiso/argo_debug.h: No such file or directory
+iso.c:91:29: error: netiso/tp_param.h: No such file or directory
+iso.c:92:30: error: netiso/tp_states.h: No such file or directory
+iso.c:93:27: error: netiso/tp_pcb.h: No such file or directory
+iso.c:94:28: error: netiso/tp_stat.h: No such file or directory
+iso.c:95:28: error: netiso/iso_pcb.h: No such file or directory
+iso.c:96:29: error: netiso/cltp_var.h: No such file or directory
+iso.c:97:25: error: netiso/cons.h: No such file or directory
+iso.c:100:17: error: kvm.h: No such file or directory
+     create  netstat/main.d
+main.c:48:25: error: sys/protosw.h: No such file or directory
+main.c:57:17: error: kvm.h: No such file or directory
+     create  netstat/mbuf.d
+mbuf.c:44:25: error: sys/protosw.h: No such file or directory
+mbuf.c:46:22: error: sys/mbuf.h: No such file or directory
+mbuf.c:47:22: error: sys/pool.h: No such file or directory
+In file included from mbuf.c:48:
+/usr/netbsd/include/sys/sysctl.h:8:2: warning: #warning Including sysctl.h header. sysctl() is not supported in Minix.
+mbuf.c:51:17: error: kvm.h: No such file or directory
+     create  netstat/mroute.d
+mroute.c:91:27: error: sys/socketvar.h: No such file or directory
+mroute.c:92:25: error: sys/protosw.h: No such file or directory
+mroute.c:95:23: error: net/route.h: No such file or directory
+mroute.c:97:26: error: netinet/igmp.h: No such file or directory
+mroute.c:99:31: error: netinet/ip_mroute.h: No such file or directory
+mroute.c:104:17: error: kvm.h: No such file or directory
+     create  netstat/mroute6.d
+mroute6.c:106:27: error: sys/socketvar.h: No such file or directory
+mroute6.c:107:25: error: sys/protosw.h: No such file or directory
+mroute6.c:114:33: error: netinet6/ip6_mroute.h: No such file or directory
+mroute6.c:118:17: error: kvm.h: No such file or directory
+     create  netstat/route.d
+route.c:43:25: error: sys/protosw.h: No such file or directory
+route.c:45:22: error: sys/mbuf.h: No such file or directory
+route.c:49:23: error: net/if_dl.h: No such file or directory
+route.c:50:26: error: net/if_types.h: No such file or directory
+route.c:51:23: error: net/route.h: No such file or directory
+route.c:53:25: error: netatalk/at.h: No such file or directory
+route.c:54:24: error: netiso/iso.h: No such file or directory
+route.c:55:26: error: netmpls/mpls.h: No such file or directory
+In file included from route.c:57:
+/usr/netbsd/include/sys/sysctl.h:8:2: warning: #warning Including sysctl.h header. sysctl() is not supported in Minix.
+route.c:62:17: error: kvm.h: No such file or directory
+     create  netstat/show.d
+show.c:34:25: error: sys/protosw.h: No such file or directory
+show.c:36:22: error: sys/mbuf.h: No such file or directory
+In file included from show.c:37:
+/usr/netbsd/include/sys/sysctl.h:8:2: warning: #warning Including sysctl.h header. sysctl() is not supported in Minix.
+show.c:40:23: error: net/if_dl.h: No such file or directory
+show.c:41:26: error: net/if_types.h: No such file or directory
+show.c:42:23: error: net/pfvar.h: No such file or directory
+show.c:43:25: error: net/pfkeyv2.h: No such file or directory
+show.c:44:23: error: net/route.h: No such file or directory
+show.c:46:30: error: netinet/if_ether.h: No such file or directory
+show.c:47:26: error: netmpls/mpls.h: No such file or directory
+     create  netstat/unix.d
+unix.c:48:25: error: sys/protosw.h: No such file or directory
+unix.c:50:27: error: sys/socketvar.h: No such file or directory
+unix.c:51:22: error: sys/mbuf.h: No such file or directory
+In file included from unix.c:52:
+/usr/netbsd/include/sys/sysctl.h:8:2: warning: #warning Including sysctl.h header. sysctl() is not supported in Minix.
+unix.c:54:23: error: sys/unpcb.h: No such file or directory
+In file included from /usr/netbsd/include/sys/stat.h:8,
+                 from /usr/netbsd/include/sys/fcntl.h:11,
+                 from /usr/netbsd/include/sys/file.h:66,
+                 from unix.c:56:
+/usr/netbsd/include/sys/time.h:230:25: error: sys/timevar.h: No such file or directory
+In file included from unix.c:56:
+/usr/netbsd/include/sys/file.h:70:27: error: sys/mallocvar.h: No such file or directory
+/usr/netbsd/include/sys/file.h:72:23: error: sys/mutex.h: No such file or directory
+/usr/netbsd/include/sys/file.h:73:25: error: sys/condvar.h: No such file or directory
+unix.c:64:17: error: kvm.h: No such file or directory
+     create  netstat/.depend
