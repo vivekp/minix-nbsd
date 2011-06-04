@@ -193,11 +193,12 @@ main(int argc, char *argv[])
 	if (!gkmflag)
 		(void)getbsize(NULL, &blocksize);
 	blocksize /= 512;
-
+	printf("blocksize: %d\n", blocksize);
 	if ((fts = fts_open(argv, ftsoptions, NULL)) == NULL)
 		err(1, "fts_open `%s'", *argv);
 
 	for (rval = 0; (p = fts_read(fts)) != NULL;) {
+		printf("File:%s ", p->fts_name);
 #ifndef __minix
 		/* If nflag is set, we have to ignore files and directories with 
                  * user "nodump" flag (UF_NODUMP) set. Currently, st_flags is not	
@@ -243,6 +244,7 @@ main(int argc, char *argv[])
 			rval = 1;
 			break;
 		default:
+			printf(" default ");
 			if (p->fts_statp->st_nlink > 1 &&
 			    linkchk(p->fts_statp->st_dev, p->fts_statp->st_ino))
 				break;
@@ -256,6 +258,7 @@ main(int argc, char *argv[])
 			if (cflag)
 				totalblocks += p->fts_statp->st_blocks;
 		}
+		printf("%lld\n", totalblocks);
 	}
 	if (errno)
 		err(1, "fts_read");
@@ -276,7 +279,7 @@ prstat(const char *fname, int64_t blocks)
 
 		(void)printf("%s\t%s\n", buf, fname);
 	} else
-		(void)printf("%lld\t%s\n",
+		(void)printf("Info:\nblocks:%lld\n%lld\t%s\n", blocks,
 		    (long long)howmany(blocks, (int64_t)blocksize),
 		    fname);
 }
