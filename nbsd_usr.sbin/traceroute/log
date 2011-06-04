@@ -1,0 +1,20 @@
+     create  traceroute/as.d
+     create  traceroute/ifaddrlist.d
+ifaddrlist.c:51:24: error: sys/sockio.h: No such file or directory
+     create  traceroute/traceroute.d
+In file included from traceroute.c:212:
+/usr/netbsd/include/sys/sysctl.h:8:2: warning: #warning Including sysctl.h header. sysctl() is not supported in Minix.
+traceroute.c:214:30: error: netinet/in_systm.h: No such file or directory
+traceroute.c:216:24: error: netinet/ip.h: No such file or directory
+traceroute.c:217:28: error: netinet/ip_var.h: No such file or directory
+traceroute.c:218:29: error: netinet/ip_icmp.h: No such file or directory
+traceroute.c:219:25: error: netinet/udp.h: No such file or directory
+traceroute.c:220:29: error: netinet/udp_var.h: No such file or directory
+     create  traceroute/version.d
+     create  traceroute/.depend
+    install  /usr/man/man8/traceroute.8
+install: no: No such file or directory
+*** Error code 1
+
+Stop.
+make: stopped in /usr/minix/nbsd_usr.sbin/traceroute
