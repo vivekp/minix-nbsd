@@ -1,0 +1,1 @@
+cd /usr/minix && cvs -d anoncvs@anoncvs.netbsd.org:/cvsroot co -N -d nbsdsrc -D 2011-01-22 $1
