@@ -1,3 +1,4 @@
+lib/nbsd_libkvm			src/lib/libkvm
 nbsd_usr.sbin/traceroute 	src/usr.sbin/traceroute
 nbsd_usr.bin/netstat		src/usr.bin/netstat
 nbsd_usr.bin/du			src/usr.bin/du
