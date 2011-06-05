@@ -94,6 +94,11 @@ main(int argc, char *argv[])
 		case 'f':
 			fflag = 1;
 			break;
+#ifndef __minix
+		/* The lchmod system call is similar to chmod but does not 
+		 * follow symbolic links. Since, lchmod is not currently 
+		 * supported in Minix, we can safely disable this switch.
+		 */ 
 		case 'h':
 			/*
 			 * In System V the -h option causes chmod to
@@ -105,6 +110,7 @@ main(int argc, char *argv[])
 			 */
 			hflag = 1;
 			break;
+#endif /* !__minix */
 		/*
 		 * XXX
 		 * "-[rwx]" are valid mode commands.  If they are the entire
@@ -143,9 +149,14 @@ done:	argv += optind;
 		}
 	} else if (!hflag)
 		fts_options |= FTS_COMFOLLOW;
+#ifndef __minix
+	/* hflag is not supported in Minix due to unavailability of lchmod
+	 * system call.
+	 */
 	if (hflag)
 		change_mode = lchmod;
 	else
+#endif /* !__minix */
 		change_mode = chmod;
 
 	mode = *argv;
