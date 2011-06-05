@@ -48,6 +48,12 @@ __RCSID("$NetBSD: cat.c,v 1.47 2008/07/20 00:52:39 lukem Exp $");
 #endif
 #endif /* not lint */
 
+#ifdef __minix
+#ifndef __MINIX_EMULATE_NETBSD_STAT
+#define __MINIX_EMULATE_NETBSD_STAT
+#endif
+#endif /* __minix */
+
 #include <sys/param.h>
 #include <sys/stat.h>
 
