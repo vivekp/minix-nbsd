@@ -1,0 +1,60 @@
+make: "/usr/minix/lib/nbsd_libkvm/Makefile" line 38: warning: duplicate script for target ".BEGIN" ignored
+make: "/usr/minix/lib/nbsd_libkvm/Makefile" line 6: warning: using previous script for ".BEGIN" defined here
+make: "/usr/minix/lib/nbsd_libkvm/Makefile" line 39: warning: duplicate script for target ".BEGIN" ignored
+make: "/usr/minix/lib/nbsd_libkvm/Makefile" line 6: warning: using previous script for ".BEGIN" defined here
+minix config included
+    compile  nbsd_libkvm/kvm.o
+kvm.c:46:22: error: sys/user.h: No such file or directory
+kvm.c:47:21: error: sys/lwp.h: No such file or directory
+kvm.c:48:22: error: sys/proc.h: No such file or directory
+In file included from kvm.c:51:
+/usr/netbsd/include/sys/sysctl.h:8:2: warning: #warning Including sysctl.h header. sysctl() is not supported in Minix.
+kvm.c:53:22: error: sys/core.h: No such file or directory
+kvm.c:54:22: error: sys/exec.h: No such file or directory
+kvm.c:55:23: error: sys/kcore.h: No such file or directory
+kvm.c:56:23: error: sys/ksyms.h: No such file or directory
+kvm.c:59:28: error: uvm/uvm_extern.h: No such file or directory
+kvm.c:74:17: error: kvm.h: No such file or directory
+In file included from kvm.c:76:
+kvm_private.h:107: error: expected ')' before '*' token
+kvm_private.h:109: error: expected ')' before '*' token
+kvm_private.h:110: error: expected ')' before '*' token
+kvm_private.h:111: error: expected ')' before '*' token
+kvm_private.h:112: error: expected ')' before '*' token
+kvm_private.h:113: error: expected ')' before '*' token
+kvm_private.h:114: error: expected ')' before '*' token
+kvm_private.h:115: error: expected ')' before '*' token
+kvm_private.h:116: error: expected ')' before '*' token
+kvm_private.h:117: error: expected ')' before '*' token
+kvm_private.h:118: error: expected ')' before '*' token
+kvm_private.h:120: error: expected ')' before '*' token
+kvm.c:78: error: expected ')' before '*' token
+kvm.c:79: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token
+kvm.c:81: error: expected ')' before '*' token
+kvm.c:84: error: expected ')' before '*' token
+kvm.c:85: error: expected ')' before '*' token
+kvm.c:88: error: expected ')' before '*' token
+kvm.c:100: error: expected ')' before '*' token
+kvm.c:117: error: expected ')' before '*' token
+kvm.c:139: error: expected ')' before '*' token
+kvm.c:174: error: expected ')' before '*' token
+kvm.c:188: error: expected ')' before '*' token
+kvm.c:230: error: expected ')' before '*' token
+kvm.c:242: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token
+kvm.c:416: error: expected ')' before '*' token
+kvm.c:513: error: expected ')' before '*' token
+kvm.c:594: error: expected ')' before '*' token
+kvm.c:618: error: expected ')' before '*' token
+kvm.c:684: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'kvm_dump_header_stdio'
+kvm.c:690: error: expected ')' before '*' token
+kvm.c:695: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token
+kvm.c:709: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token
+kvm.c:725: error: expected ')' before '*' token
+kvm.c:766: error: expected ')' before '*' token
+kvm.c:799: error: expected ')' before '*' token
+kvm.c:843: error: expected ')' before '*' token
+kvm.c:905: error: expected ')' before '*' token
+*** Error code 1
+
+Stop.
+make: stopped in /usr/minix/lib/nbsd_libkvm
