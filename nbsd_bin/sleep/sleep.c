@@ -57,6 +57,10 @@ static void alarmhandle(int);
 static void usage(void);
 int main(int, char *[]);
 
+#ifndef __minix
+/* We don't need report_requested variable anymore as SIGINFO is not
+ * supported in Minix.
+ */
 static volatile sig_atomic_t report_requested;
 static void
 report_request(int signo __unused)
@@ -64,7 +68,7 @@ report_request(int signo __unused)
 
 	report_requested = 1;
 }
-
+#endif /* !__minix */
 
 int
 main(int argc, char *argv[])
@@ -125,6 +129,10 @@ main(int argc, char *argv[])
 		ntime.tv_nsec = 0;
 	}
 
+#ifdef __minix
+	if (nanosleep(&ntime, NULL) == -1)
+		err(1, "nanosleep failed");
+#else /* !__minix */
 	original = ntime.tv_sec;
 	signal(SIGINFO, report_request);
 	while ((rv = nanosleep(&ntime, &ntime)) != 0) {
@@ -139,6 +147,7 @@ main(int argc, char *argv[])
 
 	if (rv == -1)
 		err(EXIT_FAILURE, "nanosleep failed");
+#endif /* !__minix */
 
 	return EXIT_SUCCESS;
 	/* NOTREACHED */
