@@ -5,7 +5,11 @@
 .include "../minix-config.inc"
 .endif
 
+.if defined(__MINIX)
+USE_FORT?=	no
+.else
 USE_FORT?=	yes	# cryptographic software
+.endif
 
 WARNS=	3
 PROG=	bdes
