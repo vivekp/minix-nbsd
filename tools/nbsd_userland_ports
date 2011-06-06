@@ -1,3 +1,4 @@
+lib/nbsd_libcrypt		src/lib/libcrypt
 nbsd_usr.bin/bdes		src/usr.bin/bdes
 nbsd_usr.bin/vis		src/usr.bin/vis
 nbsd_usr.bin/what		src/usr.bin/what
