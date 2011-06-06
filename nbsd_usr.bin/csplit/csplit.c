@@ -235,7 +235,15 @@ handlesig(int sig)
 	if (len < sizeof(msg))
 		(void)write(STDERR_FILENO, msg, len);
 	cleanup();
+#ifndef __minix
+	/* There is no need to raise the signal as we are anyway exiting
+	 * with non-zero status at the end of the function.
+	 * raise_default_signal(int) is present in nbsd_util which is not
+	 * yet ported to Minix, so disabling the function call is the only
+	 * option here, that doesn't affect the behaviour of the program.
+	 */ 
 	(void)raise_default_signal(sig);
+#endif
 	_exit(2);
 }
 
