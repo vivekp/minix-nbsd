@@ -1,5 +1,9 @@
 #	$NetBSD: Makefile,v 1.4 2009/04/14 22:15:17 lukem Exp $
 
+.if defined(__MINIX)
+.include "../minix-config.inc"
+.endif
+
 PROG=	banner
 
 SRCS=	$(PROG).c chset.c
