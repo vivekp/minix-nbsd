@@ -53,7 +53,7 @@ __RCSID("$NetBSD: column.c,v 1.21 2008/07/21 14:19:21 lukem Exp $");
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <util.h>
+//#include <util.h>
 
 #define	TAB	8
 #define TABROUND(l) 	(((l) + TAB) & ~(TAB - 1))
@@ -64,6 +64,9 @@ static void  maketbl(void);
 static void  print(void);
 static void  r_columnate(void);
 static void  usage(void) __dead;
+#if defined __minix && defined _MINIX_LIBUTIL
+char * estrndup(const char *, size_t);
+#endif
 
 static int termwidth = 80;		/* default terminal width */
 
@@ -295,6 +298,20 @@ input(FILE *fp)
 		list[entries++] = buf;
 	}
 }
+
+#if defined __minix && defined _MINIX_LIBUTIL
+char *
+estrndup(const char *s, size_t len)
+{
+	char *d = strndup(s, len);
+	if(d == NULL) 
+	{
+		err(1, "Cannot copy string");
+	//	exit(1);
+	}
+	return d;
+}
+#endif /* __minix && MINIX_LIBUTIL */
 
 static void
 usage(void)

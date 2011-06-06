@@ -3,12 +3,14 @@
 
 .if defined(__MINIX)
 .include "../minix-config.inc"
+
 .endif
 
 PROG=	column
 
 .if defined(__MINIX)
-LIBUTIL?=	/usr/lib/libutil.a
+LIBUTIL=	/usr/lib/libutil.a
+CPPFLAGS+=	-D_MINIX_LIBUTIL -w
 .endif
 LDADD+=-lutil
 DPADD+=${LIBUTIL}
