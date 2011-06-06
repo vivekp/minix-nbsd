@@ -1,0 +1,98 @@
+       yacc  nbsd_libutil/parsedate.c
+yacc: e - line 99 of "parsedate.y", syntax error
+%parse-param	{ struct dateinfo *param }
+^
+*** Error code 1
+
+Stop.
+make: stopped in /usr/minix/lib/nbsd_libutil
+     create  nbsd_libutil/compat_login.d
+In file included from /usr/minix/lib/nbsd_libutil/compat/compat_login.c:52:
+/usr/minix/lib/nbsd_libutil/compat/util.h:37:32: error: compat/include/pwd.h: No such file or directory
+/usr/minix/lib/nbsd_libutil/compat/util.h:38:33: error: compat/include/utmp.h: No such file or directory
+/usr/minix/lib/nbsd_libutil/compat/util.h:39:34: error: compat/include/utmpx.h: No such file or directory
+     create  nbsd_libutil/compat_login_cap.d
+/usr/minix/lib/nbsd_libutil/compat/compat_login_cap.c:45:32: error: compat/include/pwd.h: No such file or directory
+     create  nbsd_libutil/compat_loginx.d
+In file included from /usr/minix/lib/nbsd_libutil/compat/compat_loginx.c:48:
+/usr/minix/lib/nbsd_libutil/compat/util.h:37:32: error: compat/include/pwd.h: No such file or directory
+/usr/minix/lib/nbsd_libutil/compat/util.h:38:33: error: compat/include/utmp.h: No such file or directory
+/usr/minix/lib/nbsd_libutil/compat/util.h:39:34: error: compat/include/utmpx.h: No such file or directory
+     create  nbsd_libutil/compat_parsedate.d
+/usr/minix/lib/nbsd_libutil/compat/compat_parsedate.c:44:33: error: compat/include/time.h: No such file or directory
+/usr/minix/lib/nbsd_libutil/compat/compat_parsedate.c:45:29: error: compat/sys/time.h: No such file or directory
+In file included from /usr/minix/lib/nbsd_libutil/compat/compat_parsedate.c:47:
+/usr/minix/lib/nbsd_libutil/compat/util.h:37:32: error: compat/include/pwd.h: No such file or directory
+/usr/minix/lib/nbsd_libutil/compat/util.h:38:33: error: compat/include/utmp.h: No such file or directory
+/usr/minix/lib/nbsd_libutil/compat/util.h:39:34: error: compat/include/utmpx.h: No such file or directory
+     create  nbsd_libutil/compat_passwd.d
+/usr/minix/lib/nbsd_libutil/compat/compat_passwd.c:49:32: error: compat/include/pwd.h: No such file or directory
+In file included from /usr/minix/lib/nbsd_libutil/compat/compat_passwd.c:51:
+/usr/minix/lib/nbsd_libutil/compat/util.h:38:33: error: compat/include/utmp.h: No such file or directory
+/usr/minix/lib/nbsd_libutil/compat/util.h:39:34: error: compat/include/utmpx.h: No such file or directory
+     create  nbsd_libutil/disklabel_dkcksum.d
+disklabel_dkcksum.c:42:27: error: sys/disklabel.h: No such file or directory
+     create  nbsd_libutil/disklabel_scan.d
+disklabel_scan.c:44:27: error: sys/disklabel.h: No such file or directory
+     create  nbsd_libutil/efun.d
+     create  nbsd_libutil/getbootfile.d
+In file included from getbootfile.c:38:
+/usr/netbsd/include/sys/sysctl.h:8:2: warning: #warning Including sysctl.h header. sysctl() is not supported in Minix.
+     create  nbsd_libutil/getlabelsector.d
+In file included from getlabelsector.c:44:
+/usr/netbsd/include/sys/sysctl.h:8:2: warning: #warning Including sysctl.h header. sysctl() is not supported in Minix.
+     create  nbsd_libutil/getmaxpartitions.d
+In file included from getmaxpartitions.c:38:
+/usr/netbsd/include/sys/sysctl.h:8:2: warning: #warning Including sysctl.h header. sysctl() is not supported in Minix.
+     create  nbsd_libutil/getmntopts.d
+     create  nbsd_libutil/getrawpartition.d
+In file included from getrawpartition.c:38:
+/usr/netbsd/include/sys/sysctl.h:8:2: warning: #warning Including sysctl.h header. sysctl() is not supported in Minix.
+     create  nbsd_libutil/if_media.d
+if_media.c:42:26: error: net/if_media.h: No such file or directory
+     create  nbsd_libutil/login.d
+     create  nbsd_libutil/login_cap.d
+     create  nbsd_libutil/login_tty.d
+     create  nbsd_libutil/loginx.d
+     create  nbsd_libutil/logout.d
+     create  nbsd_libutil/logoutx.d
+     create  nbsd_libutil/logwtmp.d
+     create  nbsd_libutil/logwtmpx.d
+     create  nbsd_libutil/opendisk.d
+     create  nbsd_libutil/parsedate.d
+     create  nbsd_libutil/passwd.d
+     create  nbsd_libutil/pidfile.d
+     create  nbsd_libutil/pidlock.d
+     create  nbsd_libutil/pty.d
+     create  nbsd_libutil/pw_scan.d
+     create  nbsd_libutil/raise_default_signal.d
+     create  nbsd_libutil/secure_path.d
+     create  nbsd_libutil/snprintb.d
+     create  nbsd_libutil/sockaddr_snprintf.d
+sockaddr_snprintf.c:41:25: error: netatalk/at.h: No such file or directory
+sockaddr_snprintf.c:42:23: error: net/if_dl.h: No such file or directory
+     create  nbsd_libutil/stat_flags.d
+     create  nbsd_libutil/ttyaction.d
+     create  nbsd_libutil/ttymsg.d
+     create  nbsd_libutil/.depend
+    compile  nbsd_libutil/compat_login.o
+In file included from /usr/minix/lib/nbsd_libutil/compat/compat_login.c:52:
+/usr/minix/lib/nbsd_libutil/compat/util.h:37:32: error: compat/include/pwd.h: No such file or directory
+/usr/minix/lib/nbsd_libutil/compat/util.h:38:33: error: compat/include/utmp.h: No such file or directory
+/usr/minix/lib/nbsd_libutil/compat/util.h:39:34: error: compat/include/utmpx.h: No such file or directory
+In file included from /usr/minix/lib/nbsd_libutil/compat/compat_login.c:52:
+/usr/minix/lib/nbsd_libutil/compat/util.h:42: warning: 'struct utmp50' declared inside parameter list
+/usr/minix/lib/nbsd_libutil/compat/util.h:42: warning: its scope is only this definition or declaration, which is probably not what you want
+/usr/minix/lib/nbsd_libutil/compat/util.h:43: warning: 'struct utmpx50' declared inside parameter list
+/usr/minix/lib/nbsd_libutil/compat/util.h:47: warning: 'struct passwd50' declared inside parameter list
+/usr/minix/lib/nbsd_libutil/compat/util.h:49: warning: 'struct passwd50' declared inside parameter list
+/usr/minix/lib/nbsd_libutil/compat/util.h:51: warning: 'struct passwd50' declared inside parameter list
+/usr/minix/lib/nbsd_libutil/compat/compat_login.c:60: warning: 'struct utmp50' declared inside parameter list
+/usr/minix/lib/nbsd_libutil/compat/compat_login.c:60: error: conflicting types for 'login'
+/usr/minix/lib/nbsd_libutil/compat/util.h:42: note: previous declaration of 'login' was here
+/usr/minix/lib/nbsd_libutil/compat/compat_login.c: In function 'login':
+/usr/minix/lib/nbsd_libutil/compat/compat_login.c:66: warning: implicit declaration of function 'utmp50_to_utmp'
+*** Error code 1
+
+Stop.
+make: stopped in /usr/minix/lib/nbsd_libutil
