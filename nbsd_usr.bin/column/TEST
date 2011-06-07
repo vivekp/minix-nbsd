@@ -1,0 +1,1 @@
+(echo "PERM LINKS OWNER GROUP SIZE MONTH DAY HH:MM/YEAR NAME"; ls -l | sed 1d) | column -t
