@@ -1,0 +1,169 @@
+= NetBSD userland =
+Student: Vivek Prakash<<BR>>  
+Mentor: Gianluca Guida<<BR>> 
+git repository: [[http://git.minix3.org/?p=minix-nbsd.git;a=log;h=refs/heads/nbsd|minix-nbsd]]<<BR>>
+Current active git repository: [[http://github.com/vivekp/minix-nbsd|vivekp/minix-nbsd]]  [[http://github.com/vivekp/minix-nbsd/network|Log-graph]] 
+
+== Abstract ==
+The goal of the project is to expand the MINIX userland by porting the userland utilities from NetBSD and replace the old and obsolete userland part of MINIX with that of NetBSD’s, while conforming to newer POSIX revisions. Minimizing the changes in the NetBSD sources themselves will also be a high priority in this project.
+
+== Current Status ==
+||'''Done''' ||'''Item''' ||'''Percentage Complete''' ||'''Comments''' ||'''Status''' ||
+|| {o} ||Switch to ELF based system ||0% || ||Pending ||
+|| {o} ||Setup userland reference source system ||100% || || ||
+|| {o} ||Port initially suggested utilities ||50% || ||In progress ||
+|| {o} ||List utilities whose dependencies are minimal ||70% || ||In progress ||
+|| {o} ||Port utilities listed above ||0% || ||In progress ||
+|| {o} ||List utilities whose dependencies are high ||0% || || ||
+|| {o} ||Port required libraries and implement missing functions ||0% || ||In progress ||
+
+
+== Status Reports ==
+=== Pre-Coding Period ===
+ * I have got familiar with the git repository structure of Minix. Now, i also have a good idea of the workflows and various commands mentioned on the wiki page [[http://wiki.minix3.org/en/DevelopersGuide/UsingGit|UsingGit]].
+
+=== Coding Period ===
+==== Possible userland tasks ====
+(''Please add here any NetBSD utility that you would love to see in Minix.'')
+ * file
+ * sh - ''Depends on libterminfo, libedit, libl, test, printf, kill, sysctl''
+  * sysctl - ''Not supported in Minix. Researching workaround.''
+ * du - ''Done; Testing failed with major switches; Researching Minix du implementation.''
+ * ping
+ * netstat - ''In progress''
+ * traceroute - ''In progress''
+ * telnet
+
+==== Week 1 ====
+||'''Utilites''' ||'''Dependencies*''' ||'''Remarks''' ||'''Porting status''' ||'''Testing status''' ||
+||uniq ||none ||Required trivial changes to Makefile ||Done ||Done ||
+||m4 ||libutil, libl ||Overrode compilation with Minix libutil and libl libraries ||Done ||- ||
+||mkdep ||vfork() ||Used fork() instead of vfork(), as it was appropriate in context ||Done ||- ||
+||indent ||none ||Changes to Makefile ||Done ||Done ||
+||stat ||struct stat ||Enabled Minix Emulated NetBSD stat ||Done ||- ||
+||libterminfo ||stat utility ||Removed shlib dependency; forced static linking ||Done ||- ||
+||libedit ||libterminfo ||Changes to Makefile ||Done ||- ||
+||printf ||none ||,, ||Done ||Done ||
+||kill ||none ||,, ||Done ||Done ||
+||test ||csh ||Modified testing script for 'test' to also satisfy 'sh' ||Done ||Done ||
+
+
+==== Week 2 ====
+||'''Utilites''' ||'''Dependencies*''' ||'''Remarks''' ||'''Porting status''' ||'''Testing status''' ||
+||du ||struct stat, st_flags ||Functionality given by st_flags disabled. Enabled Minix Emulated NetBSD stat. Testing failed with major switches : debugging the failures. ||Done ||Failed ||
+||netstat ||netiso, pf, libkvm ||Integrating pf port from last year GSoC project. Tried to port libkvm : failed due to absence of many headers in sys/, hence researching workaround if possible ||Pending ||- ||
+||traceroute ||headers in netinet ||Many headers in netinet missing, and hence the corresponding control codes and functions used in traceroute. Their port is yet to be analysed, if not possible to port those headers i can always port traceroute with very minimal functionality that suit Minix. ||Pending ||- ||
+||cat ||st_blksize ||Enabled Minix Emulated NetBSD stat. ||Done ||Done ||
+||chmod ||lchmod system call ||hflag disabled to avoid any call of lchmod() ||Done ||Done ||
+||echo ||none ||Changes In Makefile. ||Done ||Done ||
+||mkdir ||none ||Changes In Makefile. ||Done ||Done ||
+||pwd ||none ||Changes In Makefile. ||Done ||Done ||
+||sleep ||SIGINFO ||Related variables and code altered in sleep.c to avoid use of SIGINFO, as it is not supported in Minix ||Done ||Done ||
+||banner ||none ||Changes In Makefile. ||Done ||Done ||
+||basename ||none ||Changes In Makefile. ||Done ||Done ||
+||bdes ||libcrypt ||Ported libcrypt and disabled USE_FORT ||Done ||- ||
+||libcrypt||libc ||Created static library ||Done ||- ||
+||column ||libutil ||Linked with Minix libutil. Implemented estrndup() in column.c ||Done ||- ||
+||csplit ||libutil ||Linked with Minix libutil. raise_default_signal() not present in Minix libutil, hence that function call has been disabled in csplit.c without affecting the behaviour of the program. ||Done ||- ||
+||libutil || || To many compilation errors and dependencies. I will give a thorough look again.||In progress || ||
+
+===== The dependencies are with respect to NetBSD's. =====
+== Design ==
+Userland refers to all application software that runs in user space. Userland usually refers to the various programs and libraries that the operating system uses to interact with the kernel: software that performs input/output, manipulates file system objects, etc.  (Adapted from Wikipedia).
+
+=== Implementation Plan ===
+I have planned to complete the project in four phases :
+
+ * Identifying the trivial and MINIX independent/supported userland utilities, and porting them first.
+ * Then, grouping the utilities according to libraries needed, which are either not present in MINIX or not supported by MINIX currently.
+ * Then, porting the needed library. This is an iterative process, since one library may depend on other in turn, which needs to be ported first.             Porting the library may not be the end, as many syscalls and functions are not supported in MINIX which may need to be implemented as well.
+ * Then, porting all the userland utilities dependent on the libraries and missing functions in the previous step.
+
+==== Directory structure of the userland source in MINIX ====
+All the userland utilities are currently present in /usr/src/commands in MINIX. Following the current directory structure and the modular approach used to design the whole MINIX operating system, the directory structure of the ported userland component of the NetBSD source tree should be imitated from the NetBSD source tree itself with a few modifications.
+
+The userland part of the MINIX source tree should be organized as following:
+
+ * /usr/src/commands: This directory has currently all the sources for the utilities present in MINIX, without any groupings. The utilities in it would be removed whenever the corresponding utilities from NetBSD are ported.
+ * Now, there would be four more directories in /usr/src , namely bin, sbin, usr.bin, usr.sbin taken directly from the NetBSD userland source tree.
+ * /usr/src/bin: Similar to NetBSD’s /usr/src/bin .
+ * /usr/src/sbin: Similar to NetBSD’s /usr/src/sbin .
+ * /usr/src/usr.bin: Similar to NetBSD’s /usr/src/usr.bin .
+ * /usr/src/usr.sbin: Similar to NetBSD’s /usr/src/usr.sbin .
+ * GNU-licensed utilities from NetBSD’s /usr/src/gnu can be replaced with utilities from other userland which are licensed under BSD. If this is not possible at all, making packages out of them is an option.
+
+''Advantage'' : This directory structure for MINIX offers the advantage that it separates the MINIX userland utilities from those ported from NetBSD, and thus offers clarity in the structure. Moreover, the MINIX utilities may coexist with NetBSD utilities, while the compilation for former may be disabled if the NetBSD’s are newer and superior.
+
+=== Tracking NetBSD userland source ===
+The plan is to checkout the userland source from a stable release of NetBSD and port utilities contained in that source. A minix-port.patch file would be present in the top level directory of a NetBSD component that contains the changes done to that component when porting to MINIX.
+
+A system has been set up by Gianluca Guida so that one can easily track the version of NetBSD's libc currently being used. It would be convenient for the developers to modify the nbsd sources in the minix tree and update the minix-port patches accordingly. He has also automated the minix-port.patch creation. On the same lines, the userland source version will be tracked and minix-port.patch file will be generated in each of the directories: bin, sbin, usr.bin, usr.sbin .
+
+Initially, empty directories /usr/src/bin, /usr/src/sbin, /usr/src/usr.bin, /usr/src/usr.sbin will be created. As soon as a utility from NetBSD userland is ported to MINIX , it would be added to the corresponding directory. The changes would be pushed upstream after a few utilities have been ported and minix-port.patch has been modified accordingly in each of the four directories.
+
+Also, I would maintain a list of all the NetBSD userland utilities that have been ported in the /usr/src/commands/ directory, so that one knows where to look for the source of missing utilities in commands.
+
+ * The separate system for tracking the the userland source version will be same as that for tracking the nbsd_libc version. A separate reference source tree system need to be set up because the userland may need to be updated to newer release, which may have fixed bugs in few utilities while the older nbsd_libc is absolutely compatible with the newer release, or the nbsd_libc hasn’t changed at all in the newer release.
+ * This implies that whenever a newer release of NetBSD comes, we would have to deal with merge conflicts, fix them, and check all the utilities affected by merge whether they compile now or not. If they don’t compile, fix them and send all the changes upstream.
+ * Related Tasks :
+  1. Switch to ELF based system
+  1. Set up the system for tracking the userland source version analogous to that for nbsd_libc
+
+== Schedule ==
+Here is an approximate schedule of how i will work on the project:
+
+=== Pre-Coding Period (Apr 25 - May 22) ===
+ * I will take a deep and thorough look at minix-nbsd git repository.
+ * I will be active on MINIX mailing list and IRC channels - #minix, #minix-gsoc and discuss any doubts that i may have.
+ * I will set up a new machine, install MINIX on it and update it to the trunk before the start of the Coding Period.
+ * I will discuss with my mentor about the modifications needed in existing design and planning for the project.
+ * In between, i will identify easy to port utilities, and port them if i get enough time.
+
+=== Week 1 (May 23 - May 29) ===
+Complete the dependency table of all the important userland utilities, which will list missing references to functions, missing control codes and NetBSD libraries to port.
+
+=== Week 2 (May 30 - Jun 5) ===
+Port all the userland utilities, whose dependencies are trivial or minimal.
+
+=== Week 3 (Jun 6 - Jun 12) ===
+Port as many NetBSD libraries as possible which are listed in the dependency table.
+
+=== Week 4 (Jun 13 - Jun 19) ===
+Learn about implementing the missing functions and control codes and implement them. Or, find the workarounds of doing the same if implementing the function is not feasible/supported in MINIX.
+
+=== Week 5 (Jun 20 - Jun 26) ===
+Continue porting the required NetBSD libraries, if there are any.<<BR>>  Port the userland utilities whose dependencies have been resolved.
+
+=== Week 6 (Jun 27 - Jul 3) ===
+Port more userland utilities.
+
+=== Week 7 (Jul 4 - Jul 10) - MIDTERM ===
+Test all the userland utilities ported till now, and fixing any bugs encountered in the process.
+
+=== Week 8 (Jul 11 - Jul 17) ===
+Complete the mid-term evaluation.<<BR>>  Check if the MINIX base utilities compile with the new ported libraries. Discuss with the mentor if there are issues in it.
+
+=== Week 9 (Jul 18 - Jul 24) ===
+Release the ported utilities to the MINIX community for testing.<<BR>>  Complete the implementation of missing functions and control codes, or find their alternatives and code them.
+
+=== Week 10 (Jul 25 - Jul 31) ===
+Port more userland utilities in which references to missing functions and Macros have been fixed.
+
+=== Week 11 (Aug 1 - Aug 7) ===
+Documenting all the work done till now.<<BR>>  Port more utilities.
+
+=== Week 12 (Aug 8 - Aug 14) ===
+Port more utilities and test them.
+
+=== Week 13 (Aug 15 - Aug 21) - FINAL ===
+Test all the ported userland utilities and releasing them to the community to get feedbacks.<<BR>>  Clean the code, and improve the documentation.
+
+== Resources ==
+ * [[ftp://ftp.netbsd.org/pub/NetBSD/|Sources of NetBSD release versions]]
+ * [[http://cvsweb.netbsd.org/bsdweb.cgi/~checkout~/src/share/mk/bsd.README?rev=HEAD|NetBSD's src/share/mk/bsd.README]]
+ * [[ftp://ftp.netbsd.org/pub/NetBSD/NetBSD-current/|Source of NetBSD-current development branch]]
+ * http://wiki.minix3.org/en/DevelopersGuide/PortingGuide
+ * [[http://www.feyrer.de/NetBSD/tour-de-source-1userland.html|NetBSD userland tour]]
+ * http://www.opengroup.org/onlinepubs/000095399
+ * http://www.gnu.org/prep/standards/standards.html
+ * [[http://www.gnu.org/prep/standards/html_node/Makefile-Conventions.html|Makefile Conventions]]
