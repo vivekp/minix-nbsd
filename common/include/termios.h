@@ -150,7 +150,7 @@ _PROTOTYPE( int tcsetattr, \
 #define cfsetospeed(termios_p, speed)	((termios_p)->c_ospeed = (speed), 0)
 #endif
 
-#ifdef _MINIX
+#ifdef __minix
 /* Here are the local extensions to the POSIX standard for Minix. Posix
  * conforming programs are not able to access these, and therefore they are
  * only defined when a Minix program is compiled.
@@ -206,7 +206,7 @@ _PROTOTYPE( int tcsetattr, \
  * The ioctls TIOCGWINSZ and TIOCSWINSZ can be used to get and set this 
  * information.
  */
-#endif /* _MINIX */
+#endif /* __minix */
 
 struct winsize
 {
