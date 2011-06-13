@@ -1,0 +1,206 @@
+    compile  chio/chio.o
+chio.c:47:22: error: sys/chio.h: No such file or directory
+chio.c:48:77: error: sys/cdio.h: No such file or directory
+chio.c:84: error: 'CHET_MT' undeclared here (not in a function)
+chio.c:85: error: 'CHET_ST' undeclared here (not in a function)
+chio.c:86: error: 'CHET_IE' undeclared here (not in a function)
+chio.c:87: error: 'CHET_DT' undeclared here (not in a function)
+chio.c: In function 'do_move':
+chio.c:192: error: storage size of 'cmd' isn't known
+chio.c:211: warning: passing argument 3 of 'memset' makes integer from pointer without a cast
+/usr/netbsd/include/string.h:53: note: expected 'size_t' but argument is of type 'const struct element_type *'
+chio.c:214: error: request for member 'cm_fromtype' in something not a structure or union
+chio.c:218: error: request for member 'cm_fromunit' in something not a structure or union
+chio.c:222: error: request for member 'cm_totype' in something not a structure or union
+chio.c:226: error: request for member 'cm_tounit' in something not a structure or union
+chio.c:234: error: request for member 'cm_flags' in something not a structure or union
+chio.c:234: error: 'CM_INVERT' undeclared (first use in this function)
+chio.c:234: error: (Each undeclared identifier is reported only once
+chio.c:234: error: for each function it appears in.)
+chio.c:244: error: 'CHIOMOVE' undeclared (first use in this function)
+chio.c:244: warning: passing argument 2 of 'ioctl' makes integer from pointer without a cast
+/usr/netbsd/include/minix/ioctl.h:66: note: expected 'int' but argument is of type 'const struct element_type *'
+chio.c: In function 'do_exchange':
+chio.c:254: error: storage size of 'cmd' isn't known
+chio.c:273: warning: passing argument 3 of 'memset' makes integer from pointer without a cast
+/usr/netbsd/include/string.h:53: note: expected 'size_t' but argument is of type 'const struct element_type *'
+chio.c:276: error: request for member 'ce_srctype' in something not a structure or union
+chio.c:280: error: request for member 'ce_srcunit' in something not a structure or union
+chio.c:284: error: request for member 'ce_fdsttype' in something not a structure or union
+chio.c:288: error: request for member 'ce_fdstunit' in something not a structure or union
+chio.c:297: error: request for member 'ce_sdsttype' in something not a structure or union
+chio.c:297: error: request for member 'ce_srctype' in something not a structure or union
+chio.c:298: error: request for member 'ce_sdstunit' in something not a structure or union
+chio.c:298: error: request for member 'ce_srcunit' in something not a structure or union
+chio.c:303: error: request for member 'ce_sdsttype' in something not a structure or union
+chio.c:307: error: request for member 'ce_sdstunit' in something not a structure or union
+chio.c:317: error: request for member 'ce_flags' in something not a structure or union
+chio.c:317: error: 'CE_INVERT1' undeclared (first use in this function)
+chio.c:320: error: request for member 'ce_flags' in something not a structure or union
+chio.c:320: error: 'CE_INVERT2' undeclared (first use in this function)
+chio.c:330: error: 'CHIOEXCHANGE' undeclared (first use in this function)
+chio.c:330: warning: passing argument 2 of 'ioctl' makes integer from pointer without a cast
+/usr/netbsd/include/minix/ioctl.h:66: note: expected 'int' but argument is of type 'const struct element_type *'
+chio.c: In function 'do_position':
+chio.c:340: error: storage size of 'cmd' isn't known
+chio.c:359: warning: passing argument 3 of 'memset' makes integer from pointer without a cast
+/usr/netbsd/include/string.h:53: note: expected 'size_t' but argument is of type 'const struct element_type *'
+chio.c:362: error: request for member 'cp_type' in something not a structure or union
+chio.c:366: error: request for member 'cp_unit' in something not a structure or union
+chio.c:374: error: request for member 'cp_flags' in something not a structure or union
+chio.c:374: error: 'CP_INVERT' undeclared (first use in this function)
+chio.c:384: error: 'CHIOPOSITION' undeclared (first use in this function)
+chio.c:384: warning: passing argument 2 of 'ioctl' makes integer from pointer without a cast
+/usr/netbsd/include/minix/ioctl.h:66: note: expected 'int' but argument is of type 'const struct element_type *'
+chio.c: In function 'do_params':
+chio.c:395: error: storage size of 'data' isn't known
+chio.c:405: warning: passing argument 3 of 'memset' makes integer from pointer without a cast
+/usr/netbsd/include/string.h:53: note: expected 'size_t' but argument is of type 'const struct element_type *'
+chio.c:406: error: 'CHIOGPARAMS' undeclared (first use in this function)
+chio.c:406: warning: passing argument 2 of 'ioctl' makes integer from pointer without a cast
+/usr/netbsd/include/minix/ioctl.h:66: note: expected 'int' but argument is of type 'const struct element_type *'
+chio.c:414: error: request for member 'cp_nslots' in something not a structure or union
+chio.c:414: error: request for member 'cp_nslots' in something not a structure or union
+chio.c:414: warning: comparison between pointer and integer
+chio.c:415: error: request for member 'cp_ndrives' in something not a structure or union
+chio.c:415: error: request for member 'cp_ndrives' in something not a structure or union
+chio.c:415: warning: comparison between pointer and integer
+chio.c:416: error: request for member 'cp_npickers' in something not a structure or union
+chio.c:416: error: request for member 'cp_npickers' in something not a structure or union
+chio.c:416: warning: comparison between pointer and integer
+chio.c:417: error: request for member 'cp_nportals' in something not a structure or union
+chio.c:418: error: request for member 'cp_nportals' in something not a structure or union
+chio.c:419: error: request for member 'cp_nportals' in something not a structure or union
+chio.c:419: warning: comparison between pointer and integer
+chio.c:423: error: request for member 'cp_curpicker' in something not a structure or union
+chio.c: In function 'do_getpicker':
+chio.c:442: error: 'CHIOGPICKER' undeclared (first use in this function)
+chio.c:442: warning: passing argument 2 of 'ioctl' makes integer from pointer without a cast
+/usr/netbsd/include/minix/ioctl.h:66: note: expected 'int' but argument is of type 'const struct element_type *'
+chio.c: In function 'do_setpicker':
+chio.c:469: error: 'CHIOSPICKER' undeclared (first use in this function)
+chio.c:469: warning: passing argument 2 of 'ioctl' makes integer from pointer without a cast
+/usr/netbsd/include/minix/ioctl.h:66: note: expected 'int' but argument is of type 'const struct element_type *'
+chio.c: In function 'do_status':
+chio.c:478: error: storage size of 'cmd' isn't known
+chio.c:479: error: storage size of 'data' isn't known
+chio.c:511: warning: passing argument 3 of 'memset' makes integer from pointer without a cast
+/usr/netbsd/include/string.h:53: note: expected 'size_t' but argument is of type 'const struct element_type *'
+chio.c:512: error: 'CHIOGPARAMS' undeclared (first use in this function)
+chio.c:512: warning: passing argument 2 of 'ioctl' makes integer from pointer without a cast
+/usr/netbsd/include/minix/ioctl.h:66: note: expected 'int' but argument is of type 'const struct element_type *'
+chio.c:516: warning: assignment makes integer from pointer without a cast
+chio.c:517: warning: assignment makes integer from pointer without a cast
+chio.c:535: error: 'CESR_VOLTAGS' undeclared (first use in this function)
+chio.c:535: error: invalid operands to binary | (have 'int' and 'const struct element_type *')
+chio.c:582: error: request for member 'cp_npickers' in something not a structure or union
+chio.c:582: warning: assignment makes integer from pointer without a cast
+chio.c:585: error: request for member 'cp_nslots' in something not a structure or union
+chio.c:585: warning: assignment makes integer from pointer without a cast
+chio.c:588: error: request for member 'cp_nportals' in something not a structure or union
+chio.c:588: warning: assignment makes integer from pointer without a cast
+chio.c:591: error: request for member 'cp_ndrives' in something not a structure or union
+chio.c:591: warning: assignment makes integer from pointer without a cast
+chio.c:628: error: invalid application of 'sizeof' to incomplete type 'struct changer_element_status' 
+chio.c:636: warning: passing argument 3 of 'memset' makes integer from pointer without a cast
+/usr/netbsd/include/string.h:53: note: expected 'size_t' but argument is of type 'const struct element_type *'
+chio.c:638: error: request for member 'cesr_type' in something not a structure or union
+chio.c:639: error: request for member 'cesr_unit' in something not a structure or union
+chio.c:640: error: request for member 'cesr_count' in something not a structure or union
+chio.c:641: error: request for member 'cesr_flags' in something not a structure or union
+chio.c:642: error: request for member 'cesr_data' in something not a structure or union
+chio.c:647: error: request for member 'cesr_vendor_data' in something not a structure or union
+chio.c:649: error: 'CHIOGSTATUS' undeclared (first use in this function)
+chio.c:649: warning: passing argument 2 of 'ioctl' makes integer from pointer without a cast
+/usr/netbsd/include/minix/ioctl.h:66: note: expected 'int' but argument is of type 'const struct element_type *'
+chio.c:659: error: invalid use of undefined type 'struct changer_element_status'
+chio.c:659: error: dereferencing pointer to incomplete type
+chio.c:659: error: request for member 'ces_flags' in something not a structure or union
+chio.c:659: error: 'CESTATUS_STATUS_VALID' undeclared (first use in this function)
+chio.c:659: error: invalid operands to binary & (have 'const struct element_type *' and 'const struct element_type *')
+chio.c:663: error: invalid use of undefined type 'struct changer_element_status'
+chio.c:663: error: dereferencing pointer to incomplete type
+chio.c:663: error: request for member 'ces_flags' in something not a structure or union
+chio.c:664: error: 'CESTATUS_BITS' undeclared (first use in this function)
+chio.c:664: warning: passing argument 1 of 'bits_to_string' makes integer from pointer without a cast
+chio.c:70: note: expected 'int' but argument is of type 'const struct element_type *'
+chio.c:664: warning: passing argument 2 of 'bits_to_string' from incompatible pointer type
+chio.c:70: note: expected 'const char *' but argument is of type 'const struct element_type *'
+chio.c:665: error: invalid use of undefined type 'struct changer_element_status'
+chio.c:665: error: dereferencing pointer to incomplete type
+chio.c:665: error: request for member 'ces_flags' in something not a structure or union
+chio.c:665: error: 'CESTATUS_XNAME_VALID' undeclared (first use in this function)
+chio.c:665: error: invalid operands to binary & (have 'const struct element_type *' and 'const struct element_type *')
+chio.c:666: error: invalid use of undefined type 'struct changer_element_status'
+chio.c:666: error: dereferencing pointer to incomplete type
+chio.c:666: error: request for member 'ces_xname' in something not a structure or union
+chio.c:668: error: invalid use of undefined type 'struct changer_element_status'
+chio.c:668: error: dereferencing pointer to incomplete type
+chio.c:668: error: request for member 'ces_flags' in something not a structure or union
+chio.c:668: error: 'CESTATUS_PVOL_VALID' undeclared (first use in this function)
+chio.c:668: error: invalid operands to binary & (have 'const struct element_type *' and 'const struct element_type *')
+chio.c:671: error: invalid use of undefined type 'struct changer_element_status'
+chio.c:671: error: dereferencing pointer to incomplete type
+chio.c:671: error: request for member 'ces_pvoltag' in something not a structure or union
+chio.c:671: error: request for member 'cv_tag' in something not a structure or union
+chio.c:672: error: invalid use of undefined type 'struct changer_element_status'
+chio.c:672: error: dereferencing pointer to incomplete type
+chio.c:672: error: request for member 'ces_pvoltag' in something not a structure or union
+chio.c:672: error: request for member 'cv_serial' in something not a structure or union
+chio.c:673: error: invalid use of undefined type 'struct changer_element_status'
+chio.c:673: error: dereferencing pointer to incomplete type
+chio.c:673: error: request for member 'ces_flags' in something not a structure or union
+chio.c:673: error: 'CESTATUS_AVOL_VALID' undeclared (first use in this function)
+chio.c:673: error: invalid operands to binary & (have 'const struct element_type *' and 'const struct element_type *')
+chio.c:676: error: invalid use of undefined type 'struct changer_element_status'
+chio.c:676: error: dereferencing pointer to incomplete type
+chio.c:676: error: request for member 'ces_avoltag' in something not a structure or union
+chio.c:676: error: request for member 'cv_tag' in something not a structure or union
+chio.c:677: error: invalid use of undefined type 'struct changer_element_status'
+chio.c:677: error: dereferencing pointer to incomplete type
+chio.c:677: error: request for member 'ces_avoltag' in something not a structure or union
+chio.c:677: error: request for member 'cv_serial' in something not a structure or union
+chio.c:678: error: invalid use of undefined type 'struct changer_element_status'
+chio.c:678: error: dereferencing pointer to incomplete type
+chio.c:678: error: request for member 'ces_flags' in something not a structure or union
+chio.c:678: error: 'CESTATUS_FROM_VALID' undeclared (first use in this function)
+chio.c:678: error: invalid operands to binary & (have 'const struct element_type *' and 'const struct element_type *')
+chio.c:680: error: invalid use of undefined type 'struct changer_element_status'
+chio.c:680: error: dereferencing pointer to incomplete type
+chio.c:680: error: request for member 'ces_from_type' in something not a structure or union
+chio.c:680: error: array subscript is not an integer
+chio.c:680: error: request for member 'et_name' in something not a structure or union
+chio.c:681: error: invalid use of undefined type 'struct changer_element_status'
+chio.c:681: error: dereferencing pointer to incomplete type
+chio.c:681: error: request for member 'ces_from_unit' in something not a structure or union
+chio.c:682: error: invalid use of undefined type 'struct changer_element_status'
+chio.c:682: error: dereferencing pointer to incomplete type
+chio.c:682: error: request for member 'ces_vendor_len' in something not a structure or union
+chio.c:684: error: invalid use of undefined type 'struct changer_element_status'
+chio.c:684: error: dereferencing pointer to incomplete type
+chio.c:684: error: request for member 'ces_vendor_len' in something not a structure or union
+chio.c: In function 'do_ielem':
+chio.c:697: error: 'CHIOIELEM' undeclared (first use in this function)
+chio.c:697: warning: passing argument 2 of 'ioctl' makes integer from pointer without a cast
+/usr/netbsd/include/minix/ioctl.h:66: note: expected 'int' but argument is of type 'const struct element_type *'
+chio.c: In function 'do_cdlu':
+chio.c:709: error: 'CD_LU_LOAD' undeclared (first use in this function)
+chio.c:709: error: initializer element is not constant
+chio.c:709: error: (near initialization for 'cdlu_subcmds[0].sw_value')
+chio.c:710: error: 'CD_LU_UNLOAD' undeclared (first use in this function)
+chio.c:710: error: initializer element is not constant
+chio.c:710: error: (near initialization for 'cdlu_subcmds[1].sw_value')
+chio.c:711: error: 'CD_LU_ABORT' undeclared (first use in this function)
+chio.c:711: error: initializer element is not constant
+chio.c:711: error: (near initialization for 'cdlu_subcmds[2].sw_value')
+chio.c:714: error: storage size of 'cmd' isn't known
+chio.c:732: error: request for member 'options' in something not a structure or union
+chio.c:741: error: request for member 'slot' in something not a structure or union
+chio.c:743: error: request for member 'slot' in something not a structure or union
+chio.c:749: error: 'CDIOCLOADUNLOAD' undeclared (first use in this function)
+chio.c:749: warning: passing argument 2 of 'ioctl' makes integer from pointer without a cast
+/usr/netbsd/include/minix/ioctl.h:66: note: expected 'int' but argument is of type 'const struct special_word *'
+*** Error code 1
+
+Stop.
+make: stopped in /usr/minix/nbsd_bin/chio
