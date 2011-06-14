@@ -1,0 +1,10 @@
+       link  date/date
+date.o:date.o:(.text+0x2d8): undefined reference to `___parsedate50'
+date.o:date.o:(.text+0x7ce): undefined reference to `_logwtmp'
+date.o:date.o:(.text+0x7fd): undefined reference to `_adjtime'
+date.o:date.o:(.text+0x86f): undefined reference to `_logwtmp'
+collect2: ld returned 1 exit status
+*** Error code 1
+
+Stop.
+make: stopped in /usr/minix/nbsd_bin/date
