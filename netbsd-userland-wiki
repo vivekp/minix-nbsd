@@ -32,7 +32,7 @@ The goal of the project is to expand the MINIX userland by porting the userland 
  * ping
  * netstat - ''In progress''
  * traceroute - ''In progress''
- * telnet
+ * telnet - ''In progress''
 
 ==== Week 1 ====
 ||'''Utilites''' ||'''Dependencies*''' ||'''Remarks''' ||'''Porting status''' ||'''Testing status''' ||
@@ -67,7 +67,23 @@ The goal of the project is to expand the MINIX userland by porting the userland 
 ||csplit ||libutil ||Linked with Minix libutil. raise_default_signal() not present in Minix libutil, hence that function call has been disabled in csplit.c without affecting the behaviour of the program. ||Done ||- ||
 ||libutil || || To many compilation errors and dependencies. I will give a thorough look again.||In progress || ||
 
+
+==== Week 3 ====
+||'''Utilites''' ||'''Dependencies*''' ||'''Remarks''' ||'''Porting status''' ||'''Testing status''' ||
+||ctags ||none ||Makefile modified ||Done ||Done ||
+||vis ||none ||Makefile modified ||Done ||Done ||
+||what ||none ||Makefile modified ||Done ||Done ||
+||whois ||none ||Changes in Makefile. Disabled USE_FORT to turn off substitute functions. ||Done || - ||
+||xstr ||none ||Changes in Makefile ||Done ||Done ||
+||yes ||none ||Changes in Makefile ||Done ||Done ||
+||libtelnet ||none ||Disabled USE_KERBEROS, USE_PAM, MKCRYPTO and USE_FORT. Didn't rename it to nbsd_libtelnet to prevent breaking of telnet utility. ||Done || - ||
+
+* Ported netinet/in_system.h . Tried to port netinet/ip.h as it is required for telnet, and studied it's dependencies and consequences. NetBSD ip.h depends on it's own fully-fledged TCP/IP stack, and hence it would require changes in the source of telnet to make it compatible with the TCP/IP stack of Minix.
+* Examined request types supported in ioctl() system call in Minix in more detail.  
+* Fixed __minix conditional in termios.h.
+
 ===== The dependencies are with respect to NetBSD's. =====
+
 == Design ==
 Userland refers to all application software that runs in user space. Userland usually refers to the various programs and libraries that the operating system uses to interact with the kernel: software that performs input/output, manipulates file system objects, etc.  (Adapted from Wikipedia).
 
