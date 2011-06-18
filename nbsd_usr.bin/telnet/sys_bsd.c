@@ -418,7 +418,9 @@ TerminalNewMode(int f)
 
     if (f != -1) {
 	(void) signal(SIGTSTP, susp);
+#ifndef __minix
 	(void) signal(SIGINFO, ayt);
+#endif
 #if	defined(USE_TERMIO) && defined(NOKERNINFO)
 	tmp_tc.c_lflag |= NOKERNINFO;
 #endif
@@ -449,16 +451,24 @@ TerminalNewMode(int f)
 # endif
 	}
     } else {
+#ifndef __minix
 	(void) signal(SIGINFO, (void (*)(int)) ayt_status);
+#endif
 	(void) signal(SIGTSTP, SIG_DFL);
+#ifndef __minix
 	(void) sigsetmask(sigblock(0) & ~(1<<(SIGTSTP-1)));
+#endif
 	tmp_tc = old_tc;
     }
     if (tcsetattr(tin, TCSADRAIN, &tmp_tc) < 0)
 	tcsetattr(tin, TCSANOW, &tmp_tc);
-
+#ifndef __minix
+    /* FIONBIO sets/clears the non-blocking I/O. I will look into it later
+     * to know exactly why non-blocking I/O is needed.
+     */ 
     ioctl(tin, FIONBIO, (char *)&onoff);
     ioctl(tout, FIONBIO, (char *)&onoff);
+#endif
 #if	defined(TN3270)
     if (noasynchtty == 0) {
 	ioctl(tin, FIOASYNC, (char *)&onoff);
@@ -500,12 +510,13 @@ NetClose(int fd)
     return close(fd);
 }
 
-
+#ifndef __minix
 void
 NetNonblockingIO(int fd, int onoff)
 {
     ioctl(fd, FIONBIO, (char *)&onoff);
 }
+#endif
 
 #ifdef TN3270
 void
@@ -593,11 +604,15 @@ sys_telnet_init(void)
     (void) signal(SIGPIPE, SIG_IGN);
     (void) signal(SIGWINCH, sendwin);
     (void) signal(SIGTSTP, susp);
+#ifndef __minix
     (void) signal(SIGINFO, ayt);
+#endif
 
     setconnmode(0);
 
+#ifndef __minix
     NetNonblockingIO(net, 1);
+#endif
 
 #ifdef TN3270
     if (noasynchnet == 0) {			/* DBX can't handle! */
@@ -606,9 +621,14 @@ sys_telnet_init(void)
     }
 #endif	/* defined(TN3270) */
 
+#ifndef __minix
+    /* By using SO_OOBINLINE, we are leavind the recieved data in line. 
+     * Why ?
+     */
     if (SetSockOpt(net, SOL_SOCKET, SO_OOBINLINE, 1) == -1) {
 	perror("SetSockOpt");
     }
+#endif
 }
 
 /*
