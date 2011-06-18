@@ -1,0 +1,22 @@
+    compile  cp/utils.o
+utils.c: In function 'set_utimes':
+utils.c:76: warning: implicit declaration of function 'lutimes'
+utils.c: In function 'copy_file':
+utils.c:86: error: 'MAXPHYS' undeclared (first use in this function)
+utils.c:86: error: (Each undeclared identifier is reported only once
+utils.c:86: error: for each function it appears in.)
+utils.c:171: error: 'MAP_FILE' undeclared (first use in this function)
+utils.c:178: warning: implicit declaration of function 'madvise'
+utils.c:179: error: 'MADV_SEQUENTIAL' undeclared (first use in this function)
+utils.c:86: warning: unused variable 'buf'
+utils.c: In function 'setfile':
+utils.c:338: warning: implicit declaration of function 'lchown'
+utils.c:345: warning: implicit declaration of function 'lchmod'
+utils.c:351: error: 'struct stat' has no member named 'st_flags'
+utils.c:361: warning: implicit declaration of function 'fchflags'
+utils.c:362: warning: implicit declaration of function 'chflags'
+utils.c:363: error: 'struct stat' has no member named 'st_flags'
+*** Error code 1
+
+Stop.
+make: stopped in /usr/minix/nbsd_bin/cp
