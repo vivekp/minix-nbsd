@@ -1,0 +1,57 @@
+    compile  xinstall/xinstall.o
+xinstall.c: In function 'main':
+xinstall.c:389: error: 'struct stat' has no member named 'st_flags'
+xinstall.c:389: error: 'UF_IMMUTABLE' undeclared (first use in this function)
+xinstall.c:389: error: (Each undeclared identifier is reported only once
+xinstall.c:389: error: for each function it appears in.)
+xinstall.c:389: error: 'UF_APPEND' undeclared (first use in this function)
+xinstall.c:389: error: 'SF_IMMUTABLE' undeclared (first use in this function)
+xinstall.c:389: error: 'SF_APPEND' undeclared (first use in this function)
+xinstall.c:390: warning: implicit declaration of function 'chflags'
+xinstall.c:391: error: 'struct stat' has no member named 'st_flags'
+xinstall.c: In function 'install':
+xinstall.c:663: error: 'struct stat' has no member named 'st_flags'
+xinstall.c:674: error: 'struct stat' has no member named 'st_flags'
+xinstall.c:674: error: 'UF_IMMUTABLE' undeclared (first use in this function)
+xinstall.c:674: error: 'UF_APPEND' undeclared (first use in this function)
+xinstall.c:674: error: 'SF_IMMUTABLE' undeclared (first use in this function)
+xinstall.c:674: error: 'SF_APPEND' undeclared (first use in this function)
+xinstall.c:675: error: 'struct stat' has no member named 'st_flags'
+xinstall.c:772: warning: implicit declaration of function 'futimes'
+xinstall.c:794: error: 'struct stat' has no member named 'st_flags'
+xinstall.c:794: error: 'UF_NODUMP' undeclared (first use in this function)
+xinstall.c:796: error: 'struct stat' has no member named 'st_flags'
+xinstall.c: In function 'copy':
+xinstall.c:817: error: 'MAXPHYS' undeclared (first use in this function)
+xinstall.c:864: error: 'MAP_FILE' undeclared (first use in this function)
+xinstall.c:817: warning: unused variable 'buf'
+xinstall.c: In function 'strip':
+xinstall.c:995: warning: implicit declaration of function 'vfork'
+*** Error code 1
+
+Stop.
+make: stopped in /usr/src/nbsd_usr.bin/xinstall
+     create  xinstall/xinstall.d
+     create  xinstall/.depend
+    compile  xinstall/xinstall.o
+xinstall.c: In function 'install':
+xinstall.c:689: error: 'struct stat' has no member named 'st_flags'
+xinstall.c:689: error: 'NOCHANGEBITS' undeclared (first use in this function)
+xinstall.c:689: error: (Each undeclared identifier is reported only once
+xinstall.c:689: error: for each function it appears in.)
+xinstall.c:690: warning: implicit declaration of function 'chflags'
+xinstall.c:690: error: 'struct stat' has no member named 'st_flags'
+xinstall.c:787: warning: implicit declaration of function 'futimes'
+xinstall.c:809: error: 'struct stat' has no member named 'st_flags'
+xinstall.c:809: error: 'UF_NODUMP' undeclared (first use in this function)
+xinstall.c:811: error: 'struct stat' has no member named 'st_flags'
+xinstall.c: In function 'copy':
+xinstall.c:832: error: 'MAXPHYS' undeclared (first use in this function)
+xinstall.c:879: error: 'MAP_FILE' undeclared (first use in this function)
+xinstall.c:832: warning: unused variable 'buf'
+xinstall.c: In function 'strip':
+xinstall.c:1010: warning: implicit declaration of function 'vfork'
+*** Error code 1
+
+Stop.
+make: stopped in /usr/src/nbsd_usr.bin/xinstall
