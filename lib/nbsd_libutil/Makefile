@@ -16,6 +16,16 @@ USE_SHLIBDIR=	yes
 WARNS=	4
 LIB=	util
 CPPFLAGS+=-DLIBC_SCCS -I${.CURDIR}
+.if defined(__MINIX)
+SRCS=	efun.c \
+	getmntopts.c \
+	login.c loginx.c logout.c logoutx.c \
+	logwtmp.c logwtmpx.c opendisk.c parsedate.y \
+	pw_scan.c pidfile.c pidlock.c \
+	raise_default_signal.c \
+	secure_path.c snprintb.c \
+	ttyaction.c ttymsg.c
+.else
 SRCS=	efun.c getbootfile.c getlabelsector.c getmaxpartitions.c \
 	getmntopts.c getrawpartition.c \
 	disklabel_dkcksum.c disklabel_scan.c \
@@ -26,6 +36,7 @@ SRCS=	efun.c getbootfile.c getlabelsector.c getmaxpartitions.c \
 	raise_default_signal.c \
 	secure_path.c snprintb.c sockaddr_snprintf.c stat_flags.c \
 	ttyaction.c ttymsg.c
+.endif
 
 MAN=	efun.3 getbootfile.3 getlabelsector.3 getmaxpartitions.3 \
 	getmntopts.3 \
@@ -45,7 +56,9 @@ YPREFIX=__pd
 .PATH:	${NETBSDSRCDIR}/lib/libc/gen
 .endif
 
+.if !defined(__MINIX)
 .include "compat/Makefile.inc"
+.endif
 
 MLINKS+=getlabelsector.3 getlabeloffset.3
 MLINKS+=login.3 logout.3
