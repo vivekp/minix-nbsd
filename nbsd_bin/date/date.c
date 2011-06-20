@@ -91,10 +91,12 @@ main(int argc, char *argv[])
 			aflag = 1;
 			nflag = 1;
 			break;
+#ifndef __minix
 		case 'd':
 			rflag = 1;
 			tval = parsedate(optarg, NULL, NULL);
 			if (tval == -1) 
+#endif	
 badarg:				 errx(EXIT_FAILURE,
 				    "Cannot parse `%s'", optarg);
 			break;
@@ -310,10 +312,18 @@ setthetime(const char *p)
 	if (nflag || netsettime(new_time)) {
 		logwtmp("|", "date", "");
 		if (aflag) {
+#ifndef __minix
+			/* We won't use aflag in Minix. */
 			tv.tv_sec = new_time - tval;
 			tv.tv_usec = 0;
+			/* 
+			 * adjtime() correct the time to synchronize the
+			 * system clock. We will deal it with later as it
+			 * is not supported in Minix yet.
+			 */		
 			if (adjtime(&tv, NULL))
 				err(EXIT_FAILURE, "adjtime");
+#endif
 		} else {
 			tval = new_time;
 			tv.tv_sec = tval;

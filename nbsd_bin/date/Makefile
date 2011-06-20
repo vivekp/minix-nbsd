@@ -7,9 +7,7 @@
 
 PROG=	date
 SRCS=	date.c netdate.c
-.if defined(__MINIX)
-LIBUTIL= /usr/lib/libutil.a
-.endif
+
 DPADD+=	${LIBUTIL}
 LDADD+=	-lutil
 CPPFLAGS+=-I${.CURDIR}
