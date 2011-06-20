@@ -32,7 +32,9 @@ The goal of the project is to expand the MINIX userland by porting the userland 
  * ping
  * netstat - ''In progress''
  * traceroute - ''In progress''
- * telnet - ''In progress''
+ * telnet - Ported 
+ * xinstall - Ported
+ * cksum
 
 ==== Week 1 ====
 ||'''Utilites''' ||'''Dependencies*''' ||'''Remarks''' ||'''Porting status''' ||'''Testing status''' ||
@@ -78,11 +80,22 @@ The goal of the project is to expand the MINIX userland by porting the userland 
 ||yes ||none ||Changes in Makefile ||Done ||Done ||
 ||libtelnet ||none ||Disabled USE_KERBEROS, USE_PAM, MKCRYPTO and USE_FORT. Didn't rename it to nbsd_libtelnet to prevent breaking of telnet utility. ||Done || - ||
 
-* Ported netinet/in_system.h . Tried to port netinet/ip.h as it is required for telnet, and studied it's dependencies and consequences. NetBSD ip.h depends on it's own fully-fledged TCP/IP stack, and hence it would require changes in the source of telnet to make it compatible with the TCP/IP stack of Minix.
-* Examined request types supported in ioctl() system call in Minix in more detail.  
-* Fixed __minix conditional in termios.h.
+ * Ported netinet/in_system.h . Tried to port netinet/ip.h as it is required for telnet, and studied it's dependencies and consequences. NetBSD ip.h depends on it's own fully-fledged TCP/IP stack, and hence it would require changes in the source of telnet to make it compatible with the TCP/IP stack of Minix.
+ * Examined request types supported in ioctl() system call in Minix in more detail.  
+ * Fixed _MINIX conditional in termios.h.
 
-===== The dependencies are with respect to NetBSD's. =====
+
+==== Week 4 ====
+||'''Utilites''' ||'''Dependencies*''' ||'''Remarks''' ||'''Porting status''' ||'''Testing status''' ||
+||libutil || - ||Disabled the compilation of unsupported calls. Linked utilities, earlier linked with Minix libutil, to NetBSD libutil to prevent cross-compilation. To be tested more thoroughly. ||Done || - ||
+||dd ||libutil ||Disabled SIGINFO inovacation. Compiled with flag SMALLPROG, curtailing a few flags in the way.||Done ||Done ||
+||telnet ||libtelnet ||Disabled compilation with USE_INET6, USE_KERBEROS, USE_PAM, USE_FORT. Removed sa_len, a few message pointers, vfork(), SIGINGO, and hostnames beginning in ['@', '!'] . Used sizeof(struct sockaddr_in) in place of sa_len. No way to send urgent data in TCP/IP stack and perform non-blocking I/O, hence that had to be disabled too. ||Done ||Bugs ||
+||cp || - ||Defined MAXPHYS to (64*1024). MAXBSIZE is defined to be MAXPHYS, but latter's value was missing in netbsd headers. Used utime() in place of unsupported lutimes(), and changed struct timeval to struct utimbuf for doing that. Used MAP_SHARED in place of MAP_FILE. Disabled unsupported madvise() which may affect the performance. Used chown() and chmod() in place of lchown() & lchmod() but handling the symbolic links will be tricky. Disabled st_flags and all operation concerning it too. ||Done ||Done ||
+||xinstall || - ||Disabled futimes() and everything related to st_flags. Used utime() in place of utimes() by converting struct timeval to struct utimbuf. Used MAP_SHARED and fork() inplace of MAP_FILE and vfork().||Done ||Done ||
+
+ * Worked on porting df. It is heavily dependent on NetBSD statvfs and corresponding syscalls and functions e.g. getmntinfo(). Mount related headers and control codes e.g. MNT_WAIT, MNT_NOWAIT, etc. are not supported in Minix, and the mount structure is different too, which makes it even harder to port. I am giving a good and thorough look at all the dependencies and trying to determine minimum changes with many functionality reduced in the process. 
+
+===== (*)The dependencies are with respect to NetBSD's. =====
 
 == Design ==
 Userland refers to all application software that runs in user space. Userland usually refers to the various programs and libraries that the operating system uses to interact with the kernel: software that performs input/output, manipulates file system objects, etc.  (Adapted from Wikipedia).
@@ -183,3 +196,4 @@ Test all the ported userland utilities and releasing them to the community to ge
  * http://www.opengroup.org/onlinepubs/000095399
  * http://www.gnu.org/prep/standards/standards.html
  * [[http://www.gnu.org/prep/standards/html_node/Makefile-Conventions.html|Makefile Conventions]]
+
