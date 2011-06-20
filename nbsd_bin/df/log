@@ -1,41 +1,41 @@
     compile  df/df.o
 df.c: In function 'main':
-df.c:162: warning: implicit declaration of function 'getmntinfo'
-df.c:162: error: 'MNT_NOWAIT' undeclared (first use in this function)
-df.c:162: error: (Each undeclared identifier is reported only once
-df.c:162: error: for each function it appears in.)
-df.c:190: error: 'MNT_LOCAL' undeclared (first use in this function)
-df.c:194: error: 'struct statvfs' has no member named 'f_fstypename'
-df.c:195: error: 'struct statvfs' has no member named 'f_fstypename'
+df.c:166: warning: implicit declaration of function 'getmntinfo'
+df.c:166: error: 'MNT_NOWAIT' undeclared (first use in this function)
+df.c:166: error: (Each undeclared identifier is reported only once
+df.c:166: error: for each function it appears in.)
+df.c:194: error: 'MNT_LOCAL' undeclared (first use in this function)
 df.c:198: error: 'struct statvfs' has no member named 'f_fstypename'
-df.c:209: error: 'struct statvfs' has no member named 'f_mntfromname'
+df.c:199: error: 'struct statvfs' has no member named 'f_fstypename'
+df.c:202: error: 'struct statvfs' has no member named 'f_fstypename'
+df.c:213: error: 'struct statvfs' has no member named 'f_mntfromname'
 df.c: In function 'getmntpt':
-df.c:225: error: 'MNT_NOWAIT' undeclared (first use in this function)
-df.c:227: error: 'struct statvfs' has no member named 'f_mntfromname'
-df.c:228: error: 'struct statvfs' has no member named 'f_mntonname'
+df.c:229: error: 'MNT_NOWAIT' undeclared (first use in this function)
+df.c:231: error: 'struct statvfs' has no member named 'f_mntfromname'
+df.c:232: error: 'struct statvfs' has no member named 'f_mntonname'
 df.c: In function 'regetmntinfo':
-df.c:299: error: 'MNT_WAIT' undeclared (first use in this function)
-df.c:304: error: 'MNT_IGNORE' undeclared (first use in this function)
-df.c:306: error: 'MNT_LOCAL' undeclared (first use in this function)
-df.c:308: error: 'struct statvfs' has no member named 'f_fstypename'
-df.c:309: error: 'struct statvfs' has no member named 'f_fstypename'
-df.c:315: error: 'struct statvfs' has no member named 'f_mntonname'
-df.c:320: error: 'struct statvfs' has no member named 'f_mntfromname'
-df.c:321: error: 'struct statvfs' has no member named 'f_mntfromname'
-df.c:321: error: 'MNAMELEN' undeclared (first use in this function)
+df.c:303: error: 'MNT_WAIT' undeclared (first use in this function)
+df.c:308: error: 'MNT_IGNORE' undeclared (first use in this function)
+df.c:310: error: 'MNT_LOCAL' undeclared (first use in this function)
+df.c:312: error: 'struct statvfs' has no member named 'f_fstypename'
+df.c:313: error: 'struct statvfs' has no member named 'f_fstypename'
+df.c:319: error: 'struct statvfs' has no member named 'f_mntonname'
+df.c:324: error: 'struct statvfs' has no member named 'f_mntfromname'
+df.c:325: error: 'struct statvfs' has no member named 'f_mntfromname'
+df.c:325: error: 'MNAMELEN' undeclared (first use in this function)
 df.c: In function 'prtstat':
-df.c:384: error: 'struct statvfs' has no member named 'f_mntonname'
-df.c:384: error: 'struct statvfs' has no member named 'f_mntfromname'
-df.c:385: error: 'struct statvfs' has no member named 'f_iosize'
-df.c:405: error: 'struct statvfs' has no member named 'f_fstypename'
-df.c:408: error: 'struct statvfs' has no member named 'f_owner'
-df.c:409: error: 'struct statvfs' has no member named 'f_syncwrites'
-df.c:409: error: 'struct statvfs' has no member named 'f_asyncwrites'
-df.c:464: error: 'struct statvfs' has no member named 'f_bresvd'
-df.c:475: error: 'struct statvfs' has no member named 'f_mntfromname'
-df.c:480: error: 'struct statvfs' has no member named 'f_mntonname'
-df.c:490: error: 'struct statvfs' has no member named 'f_mntfromname'
-df.c:511: error: 'struct statvfs' has no member named 'f_mntonname'
+df.c:388: error: 'struct statvfs' has no member named 'f_mntonname'
+df.c:388: error: 'struct statvfs' has no member named 'f_mntfromname'
+df.c:389: error: 'struct statvfs' has no member named 'f_iosize'
+df.c:409: error: 'struct statvfs' has no member named 'f_fstypename'
+df.c:412: error: 'struct statvfs' has no member named 'f_owner'
+df.c:413: error: 'struct statvfs' has no member named 'f_syncwrites'
+df.c:413: error: 'struct statvfs' has no member named 'f_asyncwrites'
+df.c:468: error: 'struct statvfs' has no member named 'f_bresvd'
+df.c:479: error: 'struct statvfs' has no member named 'f_mntfromname'
+df.c:484: error: 'struct statvfs' has no member named 'f_mntonname'
+df.c:494: error: 'struct statvfs' has no member named 'f_mntfromname'
+df.c:515: error: 'struct statvfs' has no member named 'f_mntonname'
 *** Error code 1
 
 Stop.
